@@ -1,4 +1,6 @@
-'use strict';
+(function () {
+
+  'use strict';
 
 /**
  * @ngdoc overview
@@ -8,7 +10,7 @@
  *
  * Main module of the application.
  */
-angular
+var app= angular
   .module('angularFinancialPortalApp', [
     'ngAnimate',
     'ngCookies',
@@ -25,17 +27,28 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
+
       .when('/assets', {
         templateUrl: 'views/assets.html',
         controller: 'AssetsCtrl',
         controllerAs: 'assets'
       })
+
+      .when('/assets/:id', {
+        templateUrl: 'views/assetfile.html',
+        controller: 'AssetfileCtrl',
+        controllerAs: 'assetfile'
+      })
+      
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
+
       .otherwise({
         redirectTo: '/'
       });
   });
+
+})()

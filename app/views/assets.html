@@ -26,9 +26,9 @@
 					<td><input type="text" ng-model="search.risk_family"/></td>  
 				</tr>  
 				<tr ng-repeat="share in shares | orderBy:predicate:reverse | filter:paginate| filter:search track by $index" ng-class-odd="'odd'">   
-					<td><a href="/assets/{{share.id}}">{{ share.name }}</a></td>
-					<td><a href="/assets/{{share.id}}">{{ share.currency }}</a></td>
-					<td><a href="/assets/{{share.id}}">{{ share.risk_family }}</a></td>
+					<td><a href="#/assets/{{share.id}}">{{ share.name }}</a></td>
+					<td><a href="#/assets/{{share.id}}">{{ share.currency }}</a></td>
+					<td><a href="#/assets/{{share.id}}">{{ share.risk_family }}</a></td>
 				</tr>  
 			</tbody>  
 		</table>  
