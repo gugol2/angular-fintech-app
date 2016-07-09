@@ -17,45 +17,52 @@
     // Service logic
     
     var serviceData={
-      getAll:getAll
+      getAssets:getAssets
     };
 
-    function getAll(){
+    function getAssets(){
 
       var deferred = $q.defer();
 
       $http({
-        method: 'GET',
         url: apiConstants.API_URL,
+        method: 'GET',
+        dataType: 'json', 
+        data: '',      
         headers: apiConstants.API_HEADERS
       })
 
-      .success(function(response) {
+        .success(function (data, status, headers, config) {
           // The promise is resolved once the HTTP call is successful.
-          /*if(response.responseStatus>=200 && response.responseStatus<400){
-            deferred.resolve(response.responseData[0]);
+          if(status>=200 && status<400){
+            //console.log(JSON.stringify(data, null, 4));
+            deferred.resolve(data);
           }else{
-            deferred.reject({responseData: response.responseData, responseStatus: response.responseStatus});
-          }  */
-          console.log("done!!!");
+            deferred.reject(status);
+          }  
+          //console.log("done!!!");
+          /*console.log(status);
+          console.log(headers); //function
+          console.log(config);  //Object*/
         })
 
-      .error(function(reason) {
-          /*// The promise is rejected if there is an error with the HTTP call.
+        .error(function(reason) {
+          // The promise is rejected if there is an error with the HTTP call.
           if(reason){
             deferred.reject(reason);
             //if we don't get any answers the proxy/api will probably be down
           }else{
             deferred.reject({responseData: 'Gateway Timeout: The proxy/api is probably down', responseStatus: 504});
-          }*/
+          }
 
-          console.log("failed!!");
+          console.log("failed!!"+reason);
         });
 
         // The promise is returned to the caller
         return deferred.promise;
 
       }
+
 
     // Public API here
     return serviceData;

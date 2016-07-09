@@ -15,7 +15,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ui.bootstrap'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -23,6 +24,11 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
+      })
+      .when('/assets', {
+        templateUrl: 'views/assets.html',
+        controller: 'AssetsCtrl',
+        controllerAs: 'assets'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
