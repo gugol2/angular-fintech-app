@@ -11,52 +11,26 @@
 	 */
 	var app= angular.module('angularFinancialPortalApp');
 
-	app.controller('AssetfileCtrl', ['$scope', 'dataService', '$window', '$routeParams', 'apiConstants', 'traceService', AssetfileCtrl]);
+	app.controller('AssetfileCtrl', ['$scope', 'dataService', '$window', '$routeParams', 'apiConstants', 'traceService', 'utilService', AssetfileCtrl]);
 
-	function AssetfileCtrl($scope, dataService, $window, $routeParams, apiConstants, traceService) {
+	function AssetfileCtrl($scope, dataService, $window, $routeParams, apiConstants, traceService, utilService) {
 
+		$scope.shareFile;
 		$scope.regions=[];
 		$scope.risk_families=[];
 		$scope.sectors=[];
 
-		//Get the name data of a node recursively
-		$scope.getRecursiveNameData=function(recursiveData, pattern, destination) {
+		$scope.getRegions=function (recursiveRegionData, pattern, destination) {
+			$scope.regions=utilService.getRecursiveNameData(recursiveRegionData, pattern, destination);
+		}
 
-			var match;
-			
-			//if name add the name to the destination
-			if(recursiveData && recursiveData.name){ 
-				destination.push(recursiveData.name);
+		$scope.getRiskFamilies=function (recursiveRiskFamiliesData, pattern, destination) {
+			$scope.risk_families=utilService.getRecursiveNameData(recursiveRiskFamiliesData, pattern, destination);
+		}
 
-				//traverse the node Object
-				for (var prop in recursiveData) {
-
-					//check if any of the properties folllow the pattern
-					if((match=pattern.test(prop))){
-						//call again the function with the node of the property that followed the pattern
-						return $scope.getRecursiveNameData(recursiveData[prop], pattern, destination);
-					}
-				}
-			}else{
-				//if the node does not follow the tree structure at any level
-				console.log("ups, this is weird!!");
-				return destination;
-			}
-
-			//if the nodes keep the tree structure to the very end, when finished all the recursive calls 
-			console.log("all good!");
-			return destination;
-
-		};
-
-		//this goes better in a filter
-		/*$scope.setNameData=function (recursiveData, pattern, destination) {
-			destination=$scope.getRecursiveNameData(recursiveData, pattern, destination);
-
-			destination = destination.join('/');
-
-			return destination;
-		};*/
+		$scope.getSectors=function (recursiveSectorData, pattern, destination) {
+			$scope.sectors=utilService.getRecursiveNameData(recursiveSectorData, pattern, destination);
+		}
 
 	    //Load the assets
 		$scope.loadAssetFile=function(id){
@@ -70,15 +44,15 @@
 				console.log(JSON.stringify($scope.shareFile, null, 4));
 
 				//set regions
-				$scope.regions = $scope.getRecursiveNameData($scope.shareFile.region, apiConstants.API_DATA_PATTERN_REGION, $scope.regions);
+				$scope.getRegions($scope.shareFile.region, apiConstants.API_DATA_PATTERN_REGION, $scope.regions);
 				console.log($scope.regions);
 
 				//set risk families
-				$scope.risk_families = $scope.getRecursiveNameData($scope.shareFile.risk_family, apiConstants.API_DATA_PATTERN_RISK_FAMILY, $scope.risk_families);
+				$scope.getRiskFamilies($scope.shareFile.risk_family, apiConstants.API_DATA_PATTERN_RISK_FAMILY, $scope.risk_families);
 				console.log($scope.risk_families);
 
 				//set sectors
-				$scope.sectors= $scope.getRecursiveNameData($scope.shareFile.sector, apiConstants.API_DATA_PATTERN_SECTOR, $scope.sectors);
+				$scope.getSectors($scope.shareFile.sector, apiConstants.API_DATA_PATTERN_SECTOR, $scope.sectors);
 				console.log($scope.sectors);
 
 			}).catch(function(reason){
@@ -90,11 +64,6 @@
 			});
 
 		};
-
-		
-		
-
-
 
 		$scope.loadAssetFile($routeParams.id);
 		
