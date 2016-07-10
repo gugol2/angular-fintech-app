@@ -11,9 +11,9 @@
 	 */
 	 var app= angular.module('angularFinancialPortalApp');
 
-	 app.controller('AssetsCtrl', [ '$scope', 'dataService', '$window', AssetsCtrl]);
+	 app.controller('AssetsCtrl', [ '$scope', 'dataService', '$window', 'traceService', AssetsCtrl]);
 
-	 function AssetsCtrl($scope, dataService, $window) {
+	 function AssetsCtrl($scope, dataService, $window, traceService) {
 
 	 	$scope.reverse = true;  
 	 	$scope.currentPage = 1;  
@@ -43,7 +43,7 @@
 						index = $scope.shares.indexOf(value);  
 						return (begin <= index && index < end);  
 					};  
-				};
+				}
 
 			}).catch(function(reason){
 
@@ -59,6 +59,6 @@
 
 	}
 	
-})()
+})();
 
 

@@ -1,23 +1,31 @@
-'use strict';
+(function () {
+  
+  'use strict';
 
-/**
- * @ngdoc service
- * @name angularFinancialPortalApp.traceService
- * @description
- * # traceService
- * Factory in the angularFinancialPortalApp.
- */
-angular.module('angularFinancialPortalApp')
-  .factory('traceService', function () {
-    // Service logic
-    // ...
+  /**
+   * @ngdoc service
+   * @name angularFinancialPortalApp.traceService
+   * @description
+   * # traceService
+   * Factory in the angularFinancialPortalApp.
+   */
+  var app=angular.module('angularFinancialPortalApp');
 
-    var meaningOfLife = 42;
+  app.factory('traceService', ['$log', traceService]);
 
-    // Public API here
-    return {
-      someMethod: function () {
-        return meaningOfLife;
+    function traceService($log) {
+      
+      var serviceTrace = {
+        catcher: catcher
+      };
+
+      function catcher(message) {
+        return function(reason) {
+          $log.info(message, reason);
+        };
       }
-    };
-  });
+
+      return serviceTrace;
+  }
+
+})();
