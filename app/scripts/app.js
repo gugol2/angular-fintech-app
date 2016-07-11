@@ -19,7 +19,7 @@ var app= angular
     'ngSanitize',
     'ngTouch',
     'ui.bootstrap',
-    'nvd3ChartDirectives'
+    'highcharts-ng'
   ])
   .config(function ($routeProvider) {
     $routeProvider
