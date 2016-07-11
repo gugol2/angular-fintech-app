@@ -18,4 +18,42 @@
 	
 	<!-- Grap -->
 	<p>Graph</p>
+
+	<div>
+		<nvd3-line-chart
+	    	data="exampleData"
+	        id="exampleId"
+	        xAxisTickFormat="xAxisTickFormatFunction()"
+	        yAxisTickFormat="yAxisTickFormatFunction()"
+	        showXAxis="true"
+	        showYAxis="true"
+
+
+			noData="No Data Available!"
+			height="400"
+	        >
+	        	<svg></svg>
+	    </nvd3-line-chart>
+	</div>
+
+	<!-- <div>
+	    <nvd3-line-with-focus-chart
+	            data="exampleData"
+	            id="exampleId"
+	            height="400"
+	            height2="50"
+	            margin="{left:80,top:50,bottom:30,right:50}"
+	            yAxisTickFormat="yAxisTickFormatFunction()"
+	            xAxisTickFormat="xAxisTickFormatFunction()"
+	            x2AxisTickFormat="xAxisTickFormatFunction()"
+				color="colorFunction()"
+				isArea="true"
+				showLegend="true"
+				noData="No Data Available!"
+				interactive="true"
+	            >
+	         <svg></svg>
+	    </nvd3-line-with-focus-chart>
+	</div> -->
+
 </div>

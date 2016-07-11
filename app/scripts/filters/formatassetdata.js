@@ -12,11 +12,13 @@
 	 */
 	var app= angular.module('angularFinancialPortalApp');
 
-	app.filter('formatAssetData', function () {
+	app.filter('formatAssetData', [formatAssetData]);
+
+	function formatAssetData() {
 	    return function (input) {
 	      return input.join('/');
 	    };
-	});
+	}
 
 
 })();
