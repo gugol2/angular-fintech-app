@@ -11,15 +11,23 @@
 	 */
 	var app= angular.module('angularFinancialPortalApp');
 
-	app.controller('AssetfileCtrl', ['$scope', 'dataService', '$window', '$routeParams', 'apiConstants', 'traceService', 'utilService', '$timeout', AssetfileCtrl]);
+	app.controller('AssetfileCtrl', ['$scope', 'dataService', '$window', '$routeParams', 'apiConstants', 'traceService', 'utilService', '$location', 'sharingService', AssetfileCtrl]);
 
-	function AssetfileCtrl($scope, dataService, $window, $routeParams, apiConstants, traceService, utilService, $timeout) {
+	function AssetfileCtrl($scope, dataService, $window, $routeParams, apiConstants, traceService, utilService, $location, sharingService) {
 
 		$scope.shareFile;
 		$scope.regions=[];
 		$scope.risk_families=[];
 		$scope.sectors=[];
 		$scope.prices=[];
+		$scope.location=$location.path();
+		console.log($scope.location);
+
+		//tab functionality
+		$scope.isActive = function (viewLocation) {
+		 	//console.log($location.path());
+		 	return viewLocation === $scope.location;
+		};
 
 
 		$scope.getRegions=function (recursiveRegionData, pattern, destination) {
@@ -90,7 +98,7 @@
 
 				$scope.shareFile=assetFileResult;
 				//console.log($scope.shareFile);
-				console.log(JSON.stringify($scope.shareFile, null, 4));
+				//console.log(JSON.stringify($scope.shareFile, null, 4));
 
 				//set regions
 				$scope.getRegions($scope.shareFile.region, apiConstants.API_DATA_PATTERN_REGION, $scope.regions);
@@ -108,7 +116,10 @@
 				//console.log($scope.shareFile.prices);
 				//console.log($scope.prices);
 
+				//draw the graph
 				$scope.createGraph(id);
+
+
 
 			}).catch(function(reason){
 
@@ -119,6 +130,9 @@
 			});
 
 		};
+
+		$scope.shares=sharingService.getAssets();  
+		console.log($scope.shares);
 
 		$scope.loadAssetFile($routeParams.id);
 

@@ -66,7 +66,7 @@
         //console.log(arr);
         bigArrayArrays.push(arr);
       }
-      console.log(JSON.stringify(bigArrayArrays, null, 4));
+      //console.log(JSON.stringify(bigArrayArrays, null, 4));
       return bigArrayArrays;
       
     }

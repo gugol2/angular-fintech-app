@@ -1,24 +1,83 @@
+
+<!-- <div class="navbar navbar-default" role="navigation">
+	<div>
+		<div class="navbar-header">
+
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse-assets">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+
+			<a class="navbar-brand" href="#/assets">Assets</a>
+		</div>
+
+		<div class="collapse navbar-collapse" id="js-navbar-collapse-assets">
+
+			<ul class="nav navbar-nav">
+				<li ng-repeat="share in shares track by $index" ng-class="{ active:header.isActive(value.url) }">
+					<a ng-href="#/assets/{{share.id}}">{{share.name}}</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div> -->
+
+
+<nav class="navbar navbar-default">
+  <div>
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!-- <a class="navbar-brand" href="#/assets">Assets</a> -->
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      
+      <ul class="nav navbar-nav">
+      	<li><a href="#/assets">Assets</a></li>
+
+        <li class="dropdown">
+          <a href="#{{location}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li ng-repeat="share in shares track by $index" ng-class="{ active:header.isActive(value.url) }">
+                <a ng-href="#/assets/{{share.id}}">{{share.name}}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
 <div class="panel panel-default">
 	<!-- Default panel contents -->
 	<div class="panel-heading">
 		<h3 class="text-center">{{shareFile.name}}</h3>
 	</div>
 	<div class="panel-body">
-		<p>Detailed information about this asset</p>
+		<h4>Details about this asset:</h4>
 	</div>
 
 	<ul class="list-group">
-	    <li class="list-group-item">Currency: {{shareFile.currency.name}}</li>
-	    <li class="list-group-item">Issuer: {{shareFile.issuer.name}}</li>
-	    <li class="list-group-item">ISIN: {{shareFile.isin}}</li>
-	    <li class="list-group-item">Region: {{regions | formatAssetData}}</li>
-	    <li class="list-group-item">Risk: {{risk_families | formatAssetData}}</li>
-	    <li class="list-group-item">Sector: {{sectors | formatAssetData}}</li>
+	    <li class="list-group-item"><strong>Currency:</strong> {{shareFile.currency.name}}</li>
+	    <li class="list-group-item"><strong>Issuer:</strong> {{shareFile.issuer.name}}</li>
+	    <li class="list-group-item"><strong>ISIN:</strong> {{shareFile.isin}}</li>
+	    <li class="list-group-item"><strong>Region:</strong> {{regions | formatAssetData}}</li>
+	    <li class="list-group-item"><strong>Risk:</strong> {{risk_families | formatAssetData}}</li>
+	    <li class="list-group-item"><strong>Sector:</strong> {{sectors | formatAssetData}}</li>
 	  </ul>
 	
 	<!-- Grap -->
-	<p>Graph</p>
-
 	<div>
         <highchart id="chart1" config="chartConfig"></highchart>
     </div>
