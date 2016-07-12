@@ -11,9 +11,9 @@
 	 */
 	var app= angular.module('angularFinancialPortalApp');
 
-	app.controller('AssetfileCtrl', ['$scope', 'dataService', '$window', '$routeParams', 'apiConstants', 'traceService', 'utilService', '$location', 'sharingService', '$timeout', 'localStorageService', AssetfileCtrl]);
+	app.controller('AssetfileCtrl', ['$scope', 'dataService', '$window', '$routeParams', 'apiConstants', 'traceService', 'utilService', '$location', 'sharingService', 'localStorageService', AssetfileCtrl]);
 
-	function AssetfileCtrl($scope, dataService, $window, $routeParams, apiConstants, traceService, utilService, $location, sharingService, $timeout, localStorageService) {
+	function AssetfileCtrl($scope, dataService, $window, $routeParams, apiConstants, traceService, utilService, $location, sharingService, localStorageService) {
 
 		$scope.regions=[];
 		$scope.riskFamilies=[];
@@ -132,7 +132,9 @@
 
 		//keep sync the local storage
 		$scope.storageLocal=function (id) {
+			//get local storage
 	 		var commentsInStore = localStorageService.get(id);
+	 		//comments is the parsed content of the localstore of an empty array
 	 		$scope.comments = JSON.parse(commentsInStore) || [];
 
 	 		/*use the angular $watch listener to watch for changes in the value of $scope.comments. 
@@ -143,6 +145,7 @@
 			        return $scope.comments;
 			    }, 
 			    function () {
+			    	//stringify the content to store in the local storage
 		      		localStorageService.set($routeParams.id, JSON.stringify($scope.comments));
 		    	},
 		    	true
@@ -150,31 +153,32 @@
 
 		 	$scope.addComment= function () {
 		 		if($scope.commenttoadd){
-		 			var dt=new Date();
-			 		console.log(dt);
-			 		var dts=dt.toLocaleString();;
-			 		console.log(dts);
-
+		 			//get the now date as a string, using locale conventions
+			 		var dts=utilService.newLocaleStringDate();
+			 	
 			 		var data={text:$scope.commenttoadd, date:dts};
 			 		console.log(data);
+			 		
 			 		$scope.comments.push(data);
 			 		$scope.commenttoadd='';
 		 		}else{
-		 			$window.alert("The comment can't be empty");	
+		 			$window.alert(apiConstants.EMPTY_INPUT_MSG);	
 		 		}
 		 		
 		 	};
 
 		 	$scope.editComment = function (index, text) {
 		 		if(text){
-			 		var dt=new Date();
-			 		console.log(dt);
-			 		var dts=dt.toLocaleString();;
-			 		console.log(dts);
+			 		//get the now date as a string, using locale conventions
+			 		var dts=utilService.newLocaleStringDate(); 
+
 			 		var data={text:text, date:dts};
+
 			 		$scope.comments[index]= data;
+
+			 		console.log(data);
 		 		}else{
-		 			$window.alert("The comment can't be empty");	
+		 			$window.alert(apiConstants.EMPTY_INPUT_MSG);	
 		 		}
 		 	};
 

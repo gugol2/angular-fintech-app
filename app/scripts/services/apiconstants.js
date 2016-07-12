@@ -22,6 +22,7 @@
 			'API_DATA_PATTERN_REGION' : /(region_level\d*)/,
 			'API_DATA_PATTERN_RISK_FAMILY' : /(sub_family)/,
 			'API_DATA_PATTERN_SECTOR' : /(sector_level\d*)/,
+			'EMPTY_INPUT_MSG' : 'The comment can\'t be empty!'
 		}
 	);
 

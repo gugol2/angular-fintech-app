@@ -17,7 +17,8 @@
     // Service logic
     var serviceUtil={
       getRecursiveNameData:getRecursiveNameData,
-      mapObjectToArray:mapObjectToArray
+      mapObjectToArray:mapObjectToArray,
+      newLocaleStringDate:newLocaleStringDate
     };
 
     //Get the name data of a node recursively and return the destination array filled with the values found
@@ -80,6 +81,13 @@
 
       return arr;
     }
+
+    //Convert a Date object to a string, using locale conventions
+    function newLocaleStringDate() {
+      var dt=new Date();
+      return dt.toLocaleString();
+    }
+    
 
     // Public API exposed
     return serviceUtil;
