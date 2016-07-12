@@ -21,7 +21,6 @@
 	 	$scope.order = function (predicate) {  
 	 		$scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;  
 	 		$scope.predicate = predicate;
-	 		console.log(predicate);  
 	 	}; 
 
 		//Load the assets
@@ -32,7 +31,7 @@
 
 
 				$scope.shares=assetsResult;
-				console.log($scope.shares);
+				//console.log($scope.shares);
 
 				if($scope.shares && $scope.shares.length){
 					$scope.totalItems = $scope.shares.length;  

@@ -15,13 +15,11 @@
 
 	function AssetfileCtrl($scope, dataService, $window, $routeParams, apiConstants, traceService, utilService, $location, sharingService, $timeout, localStorageService) {
 
-		$scope.shareFile;
 		$scope.regions=[];
-		$scope.risk_families=[];
+		$scope.riskFamilies=[];
 		$scope.sectors=[];
 		$scope.prices=[];
 		$scope.location=$location.path();
-		console.log($scope.location);
 
 		//tab functionality
 		$scope.isActive = function (viewLocation) {
@@ -32,15 +30,15 @@
 
 		$scope.getRegions=function (recursiveRegionData, pattern, destination) {
 			$scope.regions=utilService.getRecursiveNameData(recursiveRegionData, pattern, destination);
-		}
+		};
 
 		$scope.getRiskFamilies=function (recursiveRiskFamiliesData, pattern, destination) {
-			$scope.risk_families=utilService.getRecursiveNameData(recursiveRiskFamiliesData, pattern, destination);
-		}
+			$scope.riskFamilies=utilService.getRecursiveNameData(recursiveRiskFamiliesData, pattern, destination);
+		};
 
 		$scope.getSectors=function (recursiveSectorData, pattern, destination) {
 			$scope.sectors=utilService.getRecursiveNameData(recursiveSectorData, pattern, destination);
-		}
+		};
 
 		$scope.createGraph=function (id) {
 			$scope.chartConfig = {
@@ -71,7 +69,7 @@
 			        useHighStocks: true,
 
 			        xAxis: {
-			        	type: "datetime",
+			        	type: 'datetime',
 			        	title: {
 			            	text:'Date'
 			            }
@@ -89,7 +87,7 @@
 			        id: 1,
 			        data: $scope.prices
 			    });
-		}
+		};
 
 	    //Load the assets
 		$scope.loadAssetFile=function(id){
@@ -103,27 +101,23 @@
 
 				//set regions
 				$scope.getRegions($scope.shareFile.region, apiConstants.API_DATA_PATTERN_REGION, $scope.regions);
-				console.log($scope.regions);
+				//console.log($scope.regions);
 
 				//set risk families
-				$scope.getRiskFamilies($scope.shareFile.risk_family, apiConstants.API_DATA_PATTERN_RISK_FAMILY, $scope.risk_families);
-				console.log($scope.risk_families);
+				$scope.getRiskFamilies($scope.shareFile.risk_family, apiConstants.API_DATA_PATTERN_RISK_FAMILY, $scope.riskFamilies);
+				//console.log($scope.riskFamilies);
 
 				//set sectors
 				$scope.getSectors($scope.shareFile.sector, apiConstants.API_DATA_PATTERN_SECTOR, $scope.sectors);
-				console.log($scope.sectors);
+				//console.log($scope.sectors);
 
 				$scope.prices=utilService.mapObjectToArray($scope.shareFile.prices);
 				//console.log($scope.shareFile.prices);
 				//console.log($scope.prices);
 
 				//draw the graph
-				$timeout(function() {
-				    $scope.createGraph(id);
-				}, 2000);
-				
-
-				
+				$scope.createGraph(id);
+							
 
 			}).catch(function(reason){
 
@@ -162,7 +156,7 @@
 		        return $scope.comments;
 		    }, 
 		    function () {
-	      		localStorageService.set("comments", $scope.comments);
+	      		localStorageService.set('comments', $scope.comments);
 	    		},
 	    	true
 	    );
