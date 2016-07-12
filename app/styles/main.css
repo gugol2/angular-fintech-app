@@ -84,6 +84,22 @@ body {
 
 
 /*JSC Tweaks*/
-#commets{
-  padding: 5px 10px;
+.comment--jsc{
+  padding: 1px 5px;
+  margin:0px;
+}
+
+.smaller{
+  font-size: 70% !important;
+}
+
+.navbar-brand--jsc{
+  font-size: 100%;
+}
+
+/* Styles for small devices like smartphones*/
+@media screen and (max-width: 767px){
+  
+  
+
 }

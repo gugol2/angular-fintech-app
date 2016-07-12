@@ -117,7 +117,7 @@
 
 				//draw the graph
 				$scope.createGraph(id);
-							
+					
 
 			}).catch(function(reason){
 
@@ -129,50 +129,70 @@
 
 		};
 
-		//fetch the info for the navbar
-		$scope.shares=sharingService.getAssets();
+
+		//keep sync the local storage
+		$scope.storageLocal=function (id) {
+	 		var commentsInStore = localStorageService.get(id);
+	 		$scope.comments = JSON.parse(commentsInStore) || [];
+
+	 		/*use the angular $watch listener to watch for changes in the value of $scope.comments. 
+		 	If someone adds, edit or removes a comment, it will then keep our local storage comments datastore in sync.
+		 	Note the watched value needed returned when using $scope and this*/
+		 	$scope.$watch(
+		 		function () {
+			        return $scope.comments;
+			    }, 
+			    function () {
+		      		localStorageService.set($routeParams.id, JSON.stringify($scope.comments));
+		    	},
+		    	true
+		    );
+
+		 	$scope.addComment= function () {
+		 		if($scope.commenttoadd){
+		 			var dt=new Date();
+			 		console.log(dt);
+			 		var dts=dt.toLocaleString();;
+			 		console.log(dts);
+
+			 		var data={text:$scope.commenttoadd, date:dts};
+			 		console.log(data);
+			 		$scope.comments.push(data);
+			 		$scope.commenttoadd='';
+		 		}else{
+		 			$window.alert("The comment can't be empty");	
+		 		}
+		 		
+		 	};
+
+		 	$scope.editComment = function (index, text) {
+		 		if(text){
+			 		var dt=new Date();
+			 		console.log(dt);
+			 		var dts=dt.toLocaleString();;
+			 		console.log(dts);
+			 		var data={text:text, date:dts};
+			 		$scope.comments[index]= data;
+		 		}else{
+		 			$window.alert("The comment can't be empty");	
+		 		}
+		 	};
+
+		 	$scope.removeComment = function (index) {
+		 		$scope.comments.splice(index,1);
+		 	};
+	 	}
+
 
 		//load the asset info
 		$scope.loadAssetFile($routeParams.id);
 
+		//In the meantime
+		//fetch the info for the navbar
+		$scope.shares=sharingService.getAssets();
 
-		/*var vm= this;
-
-	 	var todosInStore = localStorageService.get('todos');*/
-
-	 	//$scope.comments = todosInStore || [];
-
-
-
-	 	var commentsInStore = localStorageService.get('comments');
-
-	 	$scope.comments = commentsInStore || [];
-
-	 	/*use the angular $watch listener to watch for changes in the value of $scope.comments. 
-	 	If someone adds or removes a todo, it will then keep our local storage todos datastore in sync.
-	 	Note the watched value needed returned when using $scope and this*/
-	 	$scope.$watch(
-	 		function () {
-		        return $scope.comments;
-		    }, 
-		    function () {
-	      		localStorageService.set('comments', $scope.comments);
-	    		},
-	    	true
-	    );
-
-	 	$scope.addComment= function () {
-	 		$scope.comments.push($scope.commenttoadd);
-	 		$scope.commenttoadd='';
-	 	};
-
-	 	$scope.editComment = function (index, comment) {
-	 		$scope.comments[index]= comment;
-	 	};
-
-	 	$scope.removeComment = function (index) {
-	 		$scope.comments.splice(index,1);
-	 	};
+		//localStorage
+		$scope.storageLocal($routeParams.id);
 		
 	}
 
