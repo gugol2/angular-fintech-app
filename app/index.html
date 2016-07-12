@@ -23,7 +23,7 @@
     <!-- Add your site or application content here -->
     <div class="header">
       <div class="navbar navbar-default" role="navigation">
-        <div class="container">
+        <div class="container-fluid">
           <div class="navbar-header">
 
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
@@ -40,7 +40,7 @@
 
             <ul class="nav navbar-nav">
               <li class="active"><a href="#/">Home</a></li>
-              <li><a ng-href="#/about">About</a></li>
+              <li><a ng-href="#/assets">Assests</a></li>
               <li><a ng-href="#/">Contact</a></li>
             </ul>
           </div>
@@ -48,12 +48,12 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
     <div ng-view=""></div>
     </div>
 
     <div class="footer">
-      <div class="container">
+      <div class="container-fluid">
         <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
       </div>
     </div>
@@ -83,7 +83,6 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/highcharts-ng/dist/highcharts-ng.js"></script>
-
     <!-- endbower -->
     <!-- endbuild -->
         <!-- This is needed for  highcharts-ng-->
@@ -100,6 +99,7 @@
         <script src="scripts/services/traceservice.js"></script>
         <script src="scripts/filters/formatassetdata.js"></script>
         <script src="scripts/services/utilservice.js"></script>
+        <script src="scripts/controllers/header.js"></script>
         <!-- endbuild -->
 </body>
 </html>

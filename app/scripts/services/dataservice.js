@@ -47,16 +47,15 @@
           console.log(config);  //Object*/
         })
 
-      .error(function(reason) {
+      .error(function(reason,status) {
           // The promise is rejected if there is an error with the HTTP call.
           if(reason){
-            deferred.reject(reason);
+            deferred.reject(reason, status);
             //if we don't get any answers the proxy/api will probably be down
           }else{
-            deferred.reject({responseData: 'Gateway Timeout: The proxy/api is probably down', responseStatus: 504});
+            deferred.reject({error:'Call error'}, status);
           }
 
-          console.log("failed!!"+reason);
         });
 
       // The promise is returned to the caller
@@ -91,16 +90,15 @@
           console.log(config);  //Object*/
         })
 
-      .error(function(reason) {
+      .error(function(reason, status) {
           // The promise is rejected if there is an error with the HTTP call.
           if(reason){
-            deferred.reject(reason);
+            deferred.reject(reason, status);
             //if we don't get any answers the proxy/api will probably be down
           }else{
-            deferred.reject({responseData: 'Gateway Timeout: The proxy/api is probably down', responseStatus: 504});
+            deferred.reject({error:'Call error'}, status);
           }
 
-          console.log("failed!!"+reason);
         });
 
       // The promise is returned to the caller

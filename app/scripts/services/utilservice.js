@@ -16,7 +16,8 @@
   function utilService() {
     // Service logic
     var serviceUtil={
-      getRecursiveNameData:getRecursiveNameData
+      getRecursiveNameData:getRecursiveNameData,
+      mapObjectToArray:mapObjectToArray
     };
 
     //Get the name data of a node recursively and return the destination array filled with the values found
@@ -48,6 +49,27 @@
       return destination;
 
     };
+
+    //Transorm an array of objects into an array of arrays
+    function mapObjectToArray(bigArrayObjects) {
+      var bigArrayArrays=[];
+      var obj;
+      for(var i=0; i<bigArrayObjects.length; i++){
+        obj=bigArrayObjects[i];
+        var arr = Object.keys(obj).map(function (key) {
+          if(key==="date"){
+            return Date.parse(obj[key]);
+          }else{
+            return obj[key]
+          }          
+        });
+        //console.log(arr);
+        bigArrayArrays.push(arr);
+      }
+      console.log(JSON.stringify(bigArrayArrays, null, 4));
+      return bigArrayArrays;
+      
+    }
 
     // Public API exposed
     return serviceUtil;

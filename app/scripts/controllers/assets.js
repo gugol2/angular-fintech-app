@@ -15,6 +15,7 @@
 
 	 function AssetsCtrl($scope, dataService, $window, traceService) {
 
+	 	//Table functionality
 	 	$scope.reverse = true;  
 	 	$scope.currentPage = 1;  
 	 	$scope.order = function (predicate) {  
@@ -48,8 +49,8 @@
 			}).catch(function(reason){
 
 			    //if exceptions call the traceService catcher with a message and the exception object 
-			    traceService.catcher(reason)(reason);
-			    $window.alert(reason);	
+			    traceService.catcher(reason.error)(status);
+			    $window.alert(reason.error);
 
 			});
 
