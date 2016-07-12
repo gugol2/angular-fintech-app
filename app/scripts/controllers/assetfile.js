@@ -11,9 +11,9 @@
 	 */
 	var app= angular.module('angularFinancialPortalApp');
 
-	app.controller('AssetfileCtrl', ['$scope', 'dataService', '$window', '$routeParams', 'apiConstants', 'traceService', 'utilService', '$location', 'sharingService', '$timeout', AssetfileCtrl]);
+	app.controller('AssetfileCtrl', ['$scope', 'dataService', '$window', '$routeParams', 'apiConstants', 'traceService', 'utilService', '$location', 'sharingService', '$timeout', 'localStorageService', AssetfileCtrl]);
 
-	function AssetfileCtrl($scope, dataService, $window, $routeParams, apiConstants, traceService, utilService, $location, sharingService, $timeout) {
+	function AssetfileCtrl($scope, dataService, $window, $routeParams, apiConstants, traceService, utilService, $location, sharingService, $timeout, localStorageService) {
 
 		$scope.shareFile;
 		$scope.regions=[];
@@ -148,20 +148,24 @@
 
 	 	//$scope.comments = todosInStore || [];
 
-	 	$scope.comments =[];
+
+
+	 	var commentsInStore = localStorageService.get('comments');
+
+	 	$scope.comments = commentsInStore || [];
 
 	 	/*use the angular $watch listener to watch for changes in the value of $scope.comments. 
 	 	If someone adds or removes a todo, it will then keep our local storage todos datastore in sync.
 	 	Note the watched value needed returned when using $scope and this*/
-	 	/*$scope.$watch(
+	 	$scope.$watch(
 	 		function () {
 		        return $scope.comments;
 		    }, 
 		    function () {
-	      		localStorageService.set("todos", $scope.comments);
+	      		localStorageService.set("comments", $scope.comments);
 	    		},
 	    	true
-	    );*/
+	    );
 
 	 	$scope.addComment= function () {
 	 		$scope.comments.push($scope.commenttoadd);

@@ -19,9 +19,11 @@ var app= angular
     'ngSanitize',
     'ngTouch',
     'ui.bootstrap',
-    'highcharts-ng'
-  ])
-  .config(function ($routeProvider) {
+    'highcharts-ng',
+    'LocalStorageModule'
+  ]);
+
+  app.config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -50,6 +52,10 @@ var app= angular
       .otherwise({
         redirectTo: '/'
       });
+  });
+
+  app.config(function (localStorageServiceProvider) {
+    localStorageServiceProvider.setPrefix('angularFinancialPortal');
   });
 
 })();
