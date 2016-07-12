@@ -81,5 +81,35 @@
 	<div>
         <highchart id="chart1" config="chartConfig"></highchart>
     </div>
+	
+	<!-- Comments -->
+	<div>
+		<h2>Your Comments</h2>
+
+		<!-- Comment input -->
+		<form role="form" ng-submit="addComment()">
+			<div>
+				<div class="input-group">
+					<input type="text" ng-model="commenttoadd" placeholder="Any comments about this asset?" class="form-control">
+					<span class="input-group-btn">
+						<input type="submit" class="btn btn-primary" value="Add Comment">
+					</span>
+				</div>
+			</div>
+		</form>
+
+		<!-- Todos list -->
+		<div ng-model="comments">
+			<p class="input-group" id="commets" ng-repeat="comment in comments track by $index">
+				<input type="text" ng-model="comment" class="form-control">
+				<span class="input-group-btn">
+					<button class="btn btn-info" ng-click="editComment($index, comment)" aria-label="Edit">Edit</button>
+				</span>
+				<span class="input-group-btn">
+					<button class="btn btn-warning" ng-click="removeComment($index)" aria-label="Remove">Remove</button>
+				</span>
+			</p>
+		</div>
+	</div>
 
 </div>

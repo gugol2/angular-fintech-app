@@ -1,5 +1,5 @@
 (function () {
-	
+
 	'use strict';
 
 	/**
@@ -11,9 +11,10 @@
 	 */
 	var app= angular.module('angularFinancialPortalApp');
 	  
-	app.controller('HeaderCtrl', ['$location', HeaderCtrl]);
+	app.controller('HeaderCtrl', ['$scope', '$location', HeaderCtrl]);
 
-	function HeaderCtrl($location) {
+	function HeaderCtrl($scope,$location) {
+
 	    $scope.isActive = function (viewLocation) {
 		 	//console.log($location.path());
 		 	return viewLocation === $location.path();

@@ -11,9 +11,9 @@
 	 */
 	var app= angular.module('angularFinancialPortalApp');
 
-	app.controller('AssetfileCtrl', ['$scope', 'dataService', '$window', '$routeParams', 'apiConstants', 'traceService', 'utilService', '$location', 'sharingService', AssetfileCtrl]);
+	app.controller('AssetfileCtrl', ['$scope', 'dataService', '$window', '$routeParams', 'apiConstants', 'traceService', 'utilService', '$location', 'sharingService', '$timeout', AssetfileCtrl]);
 
-	function AssetfileCtrl($scope, dataService, $window, $routeParams, apiConstants, traceService, utilService, $location, sharingService) {
+	function AssetfileCtrl($scope, dataService, $window, $routeParams, apiConstants, traceService, utilService, $location, sharingService, $timeout) {
 
 		$scope.shareFile;
 		$scope.regions=[];
@@ -58,7 +58,8 @@
 							enabled: false
 						}
 					},
-			        series: [],
+			        series: [
+					],
 			        title: {
 			            text:'Price History'
 			        },
@@ -117,9 +118,12 @@
 				//console.log($scope.prices);
 
 				//draw the graph
-				$scope.createGraph(id);
+				$timeout(function() {
+				    $scope.createGraph(id);
+				}, 2000);
+				
 
-
+				
 
 			}).catch(function(reason){
 
@@ -131,11 +135,46 @@
 
 		};
 
-		$scope.shares=sharingService.getAssets();  
-		console.log($scope.shares);
+		//fetch the info for the navbar
+		$scope.shares=sharingService.getAssets();
 
+		//load the asset info
 		$scope.loadAssetFile($routeParams.id);
 
+
+		/*var vm= this;
+
+	 	var todosInStore = localStorageService.get('todos');*/
+
+	 	//$scope.comments = todosInStore || [];
+
+	 	$scope.comments =[];
+
+	 	/*use the angular $watch listener to watch for changes in the value of $scope.comments. 
+	 	If someone adds or removes a todo, it will then keep our local storage todos datastore in sync.
+	 	Note the watched value needed returned when using $scope and this*/
+	 	/*$scope.$watch(
+	 		function () {
+		        return $scope.comments;
+		    }, 
+		    function () {
+	      		localStorageService.set("todos", $scope.comments);
+	    		},
+	    	true
+	    );*/
+
+	 	$scope.addComment= function () {
+	 		$scope.comments.push($scope.commenttoadd);
+	 		$scope.commenttoadd='';
+	 	};
+
+	 	$scope.editComment = function (index, comment) {
+	 		$scope.comments[index]= comment;
+	 	};
+
+	 	$scope.removeComment = function (index) {
+	 		$scope.comments.splice(index,1);
+	 	};
 		
 	}
 
