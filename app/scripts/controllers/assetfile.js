@@ -11,14 +11,15 @@
 	 */
 	var app= angular.module('angularFinancialPortalApp');
 
-	app.controller('AssetfileCtrl', ['$scope', 'dataService', '$window', '$routeParams', 'apiConstants', 'traceService', 'utilService', 'sharingService', 'localStorageService', AssetfileCtrl]);
+	app.controller('AssetfileCtrl', ['$scope', 'dataService', '$window', '$routeParams', '$location', 'apiConstants', 'traceService', 'utilService', 'sharingService', 'localStorageService', AssetfileCtrl]);
 
-	function AssetfileCtrl($scope, dataService, $window, $routeParams, apiConstants, traceService, utilService, sharingService, localStorageService) {
+	function AssetfileCtrl($scope, dataService, $window, $routeParams, $location, apiConstants, traceService, utilService, sharingService, localStorageService) {
 
 		$scope.regions=[];
 		$scope.riskFamilies=[];
 		$scope.sectors=[];
 		$scope.prices=[];
+		$scope.location=$location.path();
 
 		//draw chart
 		$scope.chartConfig = {
@@ -68,18 +69,18 @@
 		};
 
 		//get regions recursively
-		$scope.getRegions=function (recursiveRegionData, pattern, destination) {
-			$scope.regions=utilService.getRecursiveNameData(recursiveRegionData, pattern, destination);
+		$scope.getRegions=function (recursiveRegionDataNode, pattern, destination) {
+			$scope.regions=utilService.getRecursiveNameData(recursiveRegionDataNode, pattern, destination);
 		};
 
 		//get risks recursively
-		$scope.getRiskFamilies=function (recursiveRiskFamiliesData, pattern, destination) {
-			$scope.riskFamilies=utilService.getRecursiveNameData(recursiveRiskFamiliesData, pattern, destination);
+		$scope.getRiskFamilies=function (recursiveRiskFamiliesDataNode, pattern, destination) {
+			$scope.riskFamilies=utilService.getRecursiveNameData(recursiveRiskFamiliesDataNode, pattern, destination);
 		};
 
 		//get sectors recursively
-		$scope.getSectors=function (recursiveSectorData, pattern, destination) {
-			$scope.sectors=utilService.getRecursiveNameData(recursiveSectorData, pattern, destination);
+		$scope.getSectors=function (recursiveSectorDataNode, pattern, destination) {
+			$scope.sectors=utilService.getRecursiveNameData(recursiveSectorDataNode, pattern, destination);
 		};
 
 		//fill the graph with data
