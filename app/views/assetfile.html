@@ -36,7 +36,7 @@
 <div class="panel panel-default">
 	<!-- Default panel contents -->
 	<div class="panel-heading">
-		<h3 class="text-center corporative--color">{{shareFile.name}}</h3>
+		<h3 class="text-center">{{shareFile.name}}</h3>
 	</div>
 	<div class="panel-body">
 		<h4>Details about this asset:</h4>
@@ -76,7 +76,7 @@
 		<div ng-model="comments">
 			<p class="input-group input-group-sm comment--jsc" ng-repeat="comment in comments track by $index">
 				<input type="text" ng-model="comment.text" class="form-control">
-				<span class="input-group-addon smaller hidden-xs">
+				<span class="input-group-addon smaller--jsc hidden-xs">
 					{{comment.date}}
 				</span>
 				<span class="input-group-btn">

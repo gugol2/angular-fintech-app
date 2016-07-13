@@ -89,7 +89,7 @@ body {
   margin:0px;
 }
 
-.smaller{
+.smaller--jsc{
   font-size: 70% !important;
 }
 
@@ -97,9 +97,7 @@ body {
   font-size: 100%;
 }
 
-.corporative--color{
-  color: #290053;
-}
+
 
 
 /* Styles for small devices like smartphones
