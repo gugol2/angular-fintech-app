@@ -11,85 +11,96 @@
 	 */
 	var app= angular.module('angularFinancialPortalApp');
 
-	app.controller('AssetfileCtrl', ['$scope', 'dataService', '$window', '$routeParams', 'apiConstants', 'traceService', 'utilService', '$location', 'sharingService', 'localStorageService', AssetfileCtrl]);
+	app.controller('AssetfileCtrl', ['$scope', 'dataService', '$window', '$routeParams', 'apiConstants', 'traceService', 'utilService', 'sharingService', 'localStorageService', AssetfileCtrl]);
 
-	function AssetfileCtrl($scope, dataService, $window, $routeParams, apiConstants, traceService, utilService, $location, sharingService, localStorageService) {
+	function AssetfileCtrl($scope, dataService, $window, $routeParams, apiConstants, traceService, utilService, sharingService, localStorageService) {
 
 		$scope.regions=[];
 		$scope.riskFamilies=[];
 		$scope.sectors=[];
 		$scope.prices=[];
-		$scope.location=$location.path();
 
-		//tab functionality
-		$scope.isActive = function (viewLocation) {
-		 	//console.log($location.path());
-		 	return viewLocation === $scope.location;
+		//draw chart
+		$scope.chartConfig = {
+			options: {
+				chart: {
+					zoomType: 'x'
+				},
+				rangeSelector: {
+					enabled: true
+				},
+				navigator: {
+					enabled: true
+				},
+				credits: {
+					enabled: false
+				}
+			},
+			series: [
+			],
+			title: {
+				text:'Price History'
+			},
+			subtitle: {
+				text: 'Source: jsonstub.com/etsfintech/symbols/'
+			},
+
+			loading: true,
+			useHighStocks: true,
+
+			xAxis: {
+				type: 'datetime',
+				title: {
+					text:'Date'
+				}
+			},
+			yAxis: {
+				title: {
+					text:'Price'
+				}
+			}
 		};
 
+		//tab/navbar functionality
+		$scope.isActive = function (viewLocation) {
+		 	viewLocation = '' + viewLocation;
+		 	return viewLocation === $routeParams.id;
+		};
 
+		//get regions recursively
 		$scope.getRegions=function (recursiveRegionData, pattern, destination) {
 			$scope.regions=utilService.getRecursiveNameData(recursiveRegionData, pattern, destination);
 		};
 
+		//get risks recursively
 		$scope.getRiskFamilies=function (recursiveRiskFamiliesData, pattern, destination) {
 			$scope.riskFamilies=utilService.getRecursiveNameData(recursiveRiskFamiliesData, pattern, destination);
 		};
 
+		//get sectors recursively
 		$scope.getSectors=function (recursiveSectorData, pattern, destination) {
 			$scope.sectors=utilService.getRecursiveNameData(recursiveSectorData, pattern, destination);
 		};
 
-		$scope.createGraph=function (id) {
-			$scope.chartConfig = {
-			        options: {
-			            chart: {
-			                zoomType: 'x'
-			            },
-			            rangeSelector: {
-			                enabled: true
-			            },
-			            navigator: {
-			                enabled: true
-			            },
-			            credits: {
-							enabled: false
-						}
-					},
-			        series: [
-					],
-			        title: {
-			            text:'Price History'
-			        },
-			        subtitle: {
-			            text: 'Source: jsonstub.com/etsfintech/symbols/'+id
-			        },
+		//fill the graph with data
+		$scope.fillGraph=function () {
 
-			        loading: false,
-			        useHighStocks: true,
+			$scope.chartConfig.series.push({
+				name: $scope.shareFile.id,
+				color: '#290053',
+				id: 1,
+				data: $scope.prices
+			});
 
-			        xAxis: {
-			        	type: 'datetime',
-			        	title: {
-			            	text:'Date'
-			            }
-			        },
-			        yAxis: {
-			            title: {
-			              text:'Price ' +  $scope.shareFile.currency.symbol
-			            }
-			        }
-			    };
+			$scope.chartConfig.yAxis={title:{text:'Price ' + $scope.shareFile.currency.symbol}};
 
-				$scope.chartConfig.series.push({
-					name: id,
-			    	color: '#290053',
-			        id: 1,
-			        data: $scope.prices
-			    });
+			$scope.chartConfig.subtitle={text: 'Source: jsonstub.com/etsfintech/symbols/' +$scope.shareFile.id};
+
+			$scope.chartConfig.loading=false;
+
 		};
 
-	    //Load the assets
+	    //Load the asset info
 		$scope.loadAssetFile=function(id){
 
 
@@ -115,8 +126,8 @@
 				//console.log($scope.shareFile.prices);
 				//console.log($scope.prices);
 
-				//draw the graph
-				$scope.createGraph(id);
+				//fill the graph
+				$scope.fillGraph();
 					
 
 			}).catch(function(reason){
@@ -185,14 +196,14 @@
 		 	$scope.removeComment = function (index) {
 		 		$scope.comments.splice(index,1);
 		 	};
-	 	}
+	 	};
 
 
 		//load the asset info
 		$scope.loadAssetFile($routeParams.id);
 
 		//In the meantime
-		//fetch the info for the navbar
+		//fetch the info for the navbar from the shared service
 		$scope.shares=sharingService.getAssets();
 
 		//localStorage
