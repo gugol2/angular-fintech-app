@@ -97,9 +97,15 @@ body {
   font-size: 100%;
 }
 
-/* Styles for small devices like smartphones*/
+.corporative--color{
+  color: #290053;
+}
+
+
+/* Styles for small devices like smartphones
 @media screen and (max-width: 767px){
   
   
 
 }
+*/
