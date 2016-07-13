@@ -1,4 +1,4 @@
-/*'use strict';
+'use strict';
 
 describe('Filter: formatAssetData', function () {
 
@@ -11,10 +11,21 @@ describe('Filter: formatAssetData', function () {
     formatAssetData = $filter('formatAssetData');
   }));
 
-  it('should return the input prefixed with "formatAssetData filter:"', function () {
-    var text = 'angularjs';
-    expect(formatAssetData(text)).toBe('formatAssetData filter: ' + text);
+  it('this dummy checks injecting of the filter', function () {
+    expect(formatAssetData).toBeDefined();
+  });
+
+  it('should return a string with the elements of the input array separated by '/' ', function () {
+    //var
+    var input=['safe', 'low', 'high'];
+    var output='safe/low/high';
+    
+    //call
+    var result = formatAssetData(input);
+
+    //expects (both are the same)
+    expect(result).toEqual(output); 
+
   });
 
 });
-*/
