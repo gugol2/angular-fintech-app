@@ -11,9 +11,9 @@
 	 */
 	 var app= angular.module('angularFinancialPortalApp');
 
-	 app.controller('AssetsCtrl', [ '$scope', 'dataService', '$window', 'traceService', 'sharingService', AssetsCtrl]);
+	 app.controller('AssetsCtrl', [ '$scope', 'dataService', '$window', 'traceService', 'sharingService', 'apiConstants', AssetsCtrl]);
 
-	 function AssetsCtrl($scope, dataService, $window, traceService, sharingService) {
+	 function AssetsCtrl($scope, dataService, $window, traceService, sharingService, apiConstants) {
 
 	 	//Table functionality
 	 	$scope.reverse = true;  
@@ -26,13 +26,12 @@
 		//Load the assets
 		$scope.loadAssets=function(){
 
-
+			//API call
 			dataService.getAssets().then(function(assetsResult){
 
+				$scope.shares=assetsResult;;
 
-				$scope.shares=assetsResult;
-				//console.log($scope.shares);
-
+				//Check that the response is not empty
 				if($scope.shares && $scope.shares.length){
 					$scope.totalItems = $scope.shares.length;  
 					$scope.numPerPage = 5;  
@@ -46,10 +45,14 @@
 
 					sharingService.setAssets($scope.shares);  
 				}
+				else{
+					traceService.catcher(apiConstants.EMPTY_DATA_API_MSG)(200);
+			    	$window.alert(apiConstants.EMPTY_DATA_API_MSG);
+				}
 
 
 
-			}).catch(function(reason){
+			}).catch(function(reason, status){
 
 			    //if exceptions call the traceService catcher with a message and the exception object 
 			    traceService.catcher(reason.error)(status);

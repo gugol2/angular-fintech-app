@@ -111,27 +111,34 @@
 				//console.log($scope.shareFile);
 				//console.log(JSON.stringify($scope.shareFile, null, 4));
 
-				//set regions
-				$scope.getRegions($scope.shareFile.region, apiConstants.API_DATA_PATTERN_REGION, $scope.regions);
-				//console.log($scope.regions);
+				//Check that the response is not empty
+				if($scope.shareFile && $scope.shareFile.id){
+					//set regions
+					$scope.getRegions($scope.shareFile.region, apiConstants.API_DATA_PATTERN_REGION, $scope.regions);
+					//console.log($scope.regions);
 
-				//set risk families
-				$scope.getRiskFamilies($scope.shareFile.risk_family, apiConstants.API_DATA_PATTERN_RISK_FAMILY, $scope.riskFamilies);
-				//console.log($scope.riskFamilies);
+					//set risk families
+					$scope.getRiskFamilies($scope.shareFile.risk_family, apiConstants.API_DATA_PATTERN_RISK_FAMILY, $scope.riskFamilies);
+					//console.log($scope.riskFamilies);
 
-				//set sectors
-				$scope.getSectors($scope.shareFile.sector, apiConstants.API_DATA_PATTERN_SECTOR, $scope.sectors);
-				//console.log($scope.sectors);
+					//set sectors
+					$scope.getSectors($scope.shareFile.sector, apiConstants.API_DATA_PATTERN_SECTOR, $scope.sectors);
+					//console.log($scope.sectors);
 
-				$scope.prices=utilService.mapObjectToArray($scope.shareFile.prices);
-				//console.log($scope.shareFile.prices);
-				//console.log($scope.prices);
+					$scope.prices=utilService.mapObjectToArray($scope.shareFile.prices);
+					//console.log($scope.shareFile.prices);
+					//console.log($scope.prices);
 
-				//fill the graph
-				$scope.fillGraph();
+					//fill the graph
+					$scope.fillGraph();
+				}
+				else{
+					traceService.catcher(apiConstants.EMPTY_DATA_API_MSG)(200);
+			    	$window.alert(apiConstants.EMPTY_DATA_API_MSG);
+				}
 					
 
-			}).catch(function(reason){
+			}).catch(function(reason, status){
 
 			    //if exceptions call the traceService catcher with a message and the exception object 
 			    traceService.catcher(reason.error)(status);
