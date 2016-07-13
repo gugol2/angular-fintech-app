@@ -48,7 +48,7 @@
           <a href="#{{location}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li ng-repeat="share in shares | orderBy:'name' track by $index" ng-class="{ active:isActive(share.id) }">
-                <a ng-href="#/assets/{{share.id}}">{{share.name}}</a>
+                <a ng-href="#/assets/{{share.id}}">{{share.name}} / {{share.currency}} / {{share.risk_family}}</a>
             </li>
           </ul>
         </li>
