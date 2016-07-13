@@ -11,8 +11,12 @@ describe('Service: apiConstants', function () {
     apiConstants = _apiConstants_;
   }));
 
-  it('should do something', function () {
-    expect(!!apiConstants).toBe(true);
+  it('should check the apiConstants', function () {
+    expect(apiConstants).not.toBe(null);
+    expect(apiConstants).toBeDefined();
+
+    expect(apiConstants.API_HEADERS).toEqual(jasmine.any(Object));
+    
   });
 
 });

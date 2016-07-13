@@ -1,4 +1,4 @@
-'use strict';
+/*'use strict';
 
 describe('Controller: AssetsCtrl', function () {
 
@@ -21,3 +21,4 @@ describe('Controller: AssetsCtrl', function () {
     expect(AssetsCtrl.awesomeThings.length).toBe(3);
   });
 });
+*/

@@ -1,4 +1,4 @@
-'use strict';
+/*'use strict';
 
 describe('Service: utilService', function () {
 
@@ -16,3 +16,4 @@ describe('Service: utilService', function () {
   });
 
 });
+*/

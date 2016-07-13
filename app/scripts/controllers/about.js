@@ -1,17 +1,23 @@
-'use strict';
+(function () {
 
-/**
- * @ngdoc function
- * @name angularFinancialPortalApp.controller:AboutCtrl
- * @description
- * # AboutCtrl
- * Controller of the angularFinancialPortalApp
- */
-angular.module('angularFinancialPortalApp')
-  .controller('AboutCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+	'use strict';
+
+	/**
+	 * @ngdoc function
+	 * @name angularFinancialPortalApp.controller:AboutCtrl
+	 * @description
+	 * # AboutCtrl
+	 * Controller of the angularFinancialPortalApp
+	 */
+	var app=angular.module('angularFinancialPortalApp');
+
+	app.controller('AboutCtrl', [AboutCtrl]);
+
+	function AboutCtrl() {
+	    
+	    //nothing here...
+	  }
+
+
+	
+})();

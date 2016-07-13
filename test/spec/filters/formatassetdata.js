@@ -1,4 +1,4 @@
-'use strict';
+/*'use strict';
 
 describe('Filter: formatAssetData', function () {
 
@@ -17,3 +17,4 @@ describe('Filter: formatAssetData', function () {
   });
 
 });
+*/
