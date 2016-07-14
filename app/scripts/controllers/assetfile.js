@@ -109,26 +109,19 @@
 			dataService.getAssetFile(id).then(function(assetFileResult){
 
 				$scope.shareFile=assetFileResult;
-				//console.log($scope.shareFile);
-				//console.log(JSON.stringify($scope.shareFile, null, 4));
 
 				//Check that the response is not empty
 				if($scope.shareFile && $scope.shareFile.id){
 					//set regions
 					$scope.getRegions($scope.shareFile.region, apiConstants.API_DATA_PATTERN_REGION, $scope.regions);
-					//console.log($scope.regions);
 
 					//set risk families
 					$scope.getRiskFamilies($scope.shareFile.risk_family, apiConstants.API_DATA_PATTERN_RISK_FAMILY, $scope.riskFamilies);
-					//console.log($scope.riskFamilies);
 
 					//set sectors
 					$scope.getSectors($scope.shareFile.sector, apiConstants.API_DATA_PATTERN_SECTOR, $scope.sectors);
-					//console.log($scope.sectors);
 
 					$scope.prices=utilService.mapObjectToArray($scope.shareFile.prices);
-					//console.log($scope.shareFile.prices);
-					//console.log($scope.prices);
 
 					//fill the graph
 					$scope.fillGraph();
@@ -184,7 +177,6 @@
 			 		var dts=utilService.newLocaleStringDate();
 			 	
 			 		var data={text:$scope.commenttoadd, date:dts};
-			 		//console.log(data);
 			 		
 			 		$scope.comments.push(data);
 			 		$scope.commenttoadd='';
@@ -203,7 +195,6 @@
 
 			 		$scope.comments[index]= data;
 
-			 		//console.log(data);
 		 		}else{
 		 			$window.alert(apiConstants.EMPTY_INPUT_MSG);	
 		 		}

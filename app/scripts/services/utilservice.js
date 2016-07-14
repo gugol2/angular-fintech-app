@@ -41,12 +41,10 @@
         }
       }else{
         //if the node does not follow the tree structure at any level
-        //console.log("ups, this is weird!!");
         return destination;
       }
 
       //if the nodes keep the tree structure to the very end, when it finishes all the recursive calls 
-      //console.log("all good!");
       return destination;
 
     }
@@ -68,17 +66,15 @@
 
         return arr;
       }
-      
+
       var bigArrayArrays=[];
       var obj;
       for(var i=0; i<bigArrayObjects.length; i++){
         obj=bigArrayObjects[i];
       
         var arr=makeArrayFromObject(obj);
-        //console.log(arr);
         bigArrayArrays.push(arr);
       }
-      //console.log(JSON.stringify(bigArrayArrays, null, 4));
       return bigArrayArrays;
       
     }

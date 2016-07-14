@@ -14,9 +14,8 @@
 	app.controller('HeaderCtrl', ['$scope', '$location', HeaderCtrl]);
 
 	function HeaderCtrl($scope,$location) {
-
+		///tab/navbar functionality
 	    $scope.isActive = function (viewLocation) {
-		 	//console.log($location.path());
 		 	return viewLocation === $location.path();
 		};
 

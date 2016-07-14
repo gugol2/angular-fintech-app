@@ -33,18 +33,13 @@
         headers: apiConstants.API_HEADERS
       })
 
-      .success(function (data, status, headers, config) {
+      .success(function (data, status) {
           // The promise is resolved once the HTTP call is successful.
           if(status>=200 && status<400){
-            //console.log(JSON.stringify(data, null, 4));
             deferred.resolve(data);
           }else{
             deferred.reject(status);
           }  
-          //console.log("done!!!");
-          /*console.log(status);
-          console.log(headers); //function
-          console.log(config);  //Object*/
         })
 
       .error(function(reason,status) {
@@ -77,18 +72,13 @@
         headers: apiConstants.API_HEADERS
       })
 
-      .success(function (data, status, headers, config) {
+      .success(function (data, status) {
           // The promise is resolved once the HTTP call is successful.
           if(status>=200 && status<400){
-            //console.log(JSON.stringify(data, null, 4));
             deferred.resolve(data);
           }else{
             deferred.reject(status);
           }  
-          //console.log("done!!!");
-          /*console.log(status);
-          console.log(headers); //function
-          console.log(config);  //Object*/
         })
 
       .error(function(reason, status) {

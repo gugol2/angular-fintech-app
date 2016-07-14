@@ -19,6 +19,7 @@
         catcher: catcher
       };
 
+      //logs message and reason
       function catcher(message) {
         return function(reason) {
           $log.info(message, reason);
