@@ -48,3 +48,4 @@ Running `grunt test` will run the unit tests with karma.
 
 ### Notes:
 * Hide date and time of comments in the xs viewport (width<768px)
+* Scroll horizontally on the assets table for the xs viewport (width<768px)
