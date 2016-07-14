@@ -87,7 +87,7 @@ describe('Controller: AssetsCtrl', function () {
   });
 
 
-  it('should alert and trace an EMPTY_DATA_API_MSG when the call to loadAssets is successful but the response is not empty', function () {
+  it('should alert and trace an EMPTY_DATA_API_MSG when the call to loadAssets is successful but the response is empty', function () {
     //vars
     var assetsResult=[];
 
