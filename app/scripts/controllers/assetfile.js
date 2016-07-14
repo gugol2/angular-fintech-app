@@ -88,7 +88,7 @@
 
 			$scope.chartConfig.series.push({
 				name: $scope.shareFile.id,
-				color: '#290053',
+				color: $scope.shareFile.currency.color,
 				id: 1,
 				data: $scope.prices
 			});
