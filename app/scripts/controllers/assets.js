@@ -29,7 +29,7 @@
 			//API call
 			dataService.getAssets().then(function(assetsResult){
 
-				$scope.shares=assetsResult;;
+				$scope.shares=assetsResult;
 
 				//Check that the response is not empty
 				if($scope.shares && $scope.shares.length){
@@ -50,13 +50,10 @@
 			    	$window.alert(apiConstants.EMPTY_DATA_API_MSG);
 				}
 
-
-
-			}).catch(function(reason, status){
-
+			}).catch(function(reason){
 			    //if exceptions call the traceService catcher with a message and the exception object 
-			    traceService.catcher(reason.error)(status);
-			    $window.alert(reason.error);
+			    traceService.catcher(reason.msg)(reason.status);
+			    $window.alert(reason.msg);
 
 			});
 

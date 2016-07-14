@@ -50,10 +50,11 @@
       .error(function(reason,status) {
           // The promise is rejected if there is an error with the HTTP call.
           if(reason){
-            deferred.reject(reason, status);
+            deferred.reject({msg:reason.error, status:status});
             //if we don't get any answers the proxy/api will probably be down
           }else{
-            deferred.reject({error:'Call error'}, status);
+            //the error is a property of the reason object when it exists, so I mock the same structure when it does not.
+            deferred.reject({msg:'Call error', status:status});
           }
 
         });
@@ -93,10 +94,11 @@
       .error(function(reason, status) {
           // The promise is rejected if there is an error with the HTTP call.
           if(reason){
-            deferred.reject(reason, status);
+            deferred.reject({msg:reason.error, status:status});
             //if we don't get any answers the proxy/api will probably be down
           }else{
-            deferred.reject({error:'Call error'}, status);
+            //the error is a property of the reason object when it exists, so I mock the same structure when it does not.
+            deferred.reject({msg:'Call error', status:status});
           }
 
         });
