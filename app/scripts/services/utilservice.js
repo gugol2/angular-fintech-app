@@ -53,6 +53,22 @@
 
     //Transorm an array of objects into an array of arrays
     function mapObjectToArray(bigArrayObjects) {
+
+      //map Object to array
+      function makeArrayFromObject(obj) {
+        var arr=[];
+
+        arr=Object.keys(obj).map(function (key) {
+            if(key==='date'){
+              return Date.parse(obj[key]);
+            }else{
+              return obj[key];
+            }          
+        });
+
+        return arr;
+      }
+      
       var bigArrayArrays=[];
       var obj;
       for(var i=0; i<bigArrayObjects.length; i++){
@@ -67,20 +83,7 @@
       
     }
 
-    //map Object to array
-    function makeArrayFromObject(obj) {
-      var arr=[];
-
-      arr=Object.keys(obj).map(function (key) {
-          if(key==='date'){
-            return Date.parse(obj[key]);
-          }else{
-            return obj[key];
-          }          
-      });
-
-      return arr;
-    }
+    
 
     //Convert a Date object to a string, using locale conventions
     function newLocaleStringDate() {

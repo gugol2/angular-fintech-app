@@ -150,7 +150,7 @@
 		//fetch the info for the navbar from the shared service
 		$scope.getShares=function () {
 			$scope.shares=sharingService.getAssets();
-		}
+		};
 
 
 		//keep sync the local storage
@@ -159,7 +159,7 @@
 	 		var commentsInStore = localStorageService.get(id);
 	 		//comments is the parsed content of the localstore of an empty array
 	 		if(commentsInStore){
-	 			$scope.comments = JSON.parse(commentsInStore)
+	 			$scope.comments = JSON.parse(commentsInStore);
 	 		}else{
 	 			$scope.comments =[];
 	 		}
