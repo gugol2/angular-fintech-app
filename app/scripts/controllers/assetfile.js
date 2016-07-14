@@ -20,6 +20,7 @@
 		$scope.sectors=[];
 		$scope.prices=[];
 		$scope.location=$location.path();
+		$scope.shares=[];
 
 		//draw chart
 		$scope.chartConfig = {
@@ -146,6 +147,11 @@
 
 		};
 
+		//fetch the info for the navbar from the shared service
+		$scope.getShares=function () {
+			$scope.shares=sharingService.getAssets();
+		}
+
 
 		//keep sync the local storage
 		$scope.storageLocal=function (id) {
@@ -210,7 +216,7 @@
 
 		//In the meantime
 		//fetch the info for the navbar from the shared service
-		$scope.shares=sharingService.getAssets();
+		$scope.getShares();
 
 		//localStorage
 		$scope.storageLocal($routeParams.id);

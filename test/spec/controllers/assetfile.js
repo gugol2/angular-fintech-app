@@ -237,4 +237,58 @@ describe('Controller: AssetfileCtrl', function () {
   });
 
 
+  /*it('should check the localStorage', function () {
+    //vars
+    var id='1';
+
+    var store = {};
+    var commentsInStore;
+    var ls = function() {
+        return JSON.parse(store.storage);
+    };
+
+    //spies
+    spyOn(localStorageService, 'set');
+
+    spyOn(localStorageService, 'get').andCallFake(function(key) {
+      return store[key];
+    });
+    
+    spyOn(scope, 'storageLocal').and.callThrough();
+
+    //call
+    //scope.storageLocal(id);
+
+    commentsInStore = localStorageService.get(id);
+    scope.comments = JSON.parse(commentsInStore) || [];
+
+    expect(scope.comments).toEqual(store[id]);
+    
+    //expects
+    //expect(localStorageService.get).toHaveBeenCalled();
+  
+  });*/
+
+
+  it('should check that sharingService.getAssets fills scope.shares', function () {
+    //passed an array
+    var assetsInput=[{test:'test1'},{test:'test2'}];
+
+    //spies
+    spyOn(sharingService, 'getAssets').and.callThrough();
+
+    //before
+    expect(scope.shares).toEqual([]);
+
+    //call
+    sharingService.setAssets(assetsInput);
+    scope.getShares();
+
+    //after
+    expect(scope.shares).toEqual(jasmine.any(Array));
+    expect(scope.shares).toEqual(assetsInput);
+
+  });
+
+
 });
