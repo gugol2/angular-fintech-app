@@ -235,39 +235,113 @@ describe('Controller: AssetfileCtrl', function () {
     expect($window.alert).toHaveBeenCalledWith(assetFileResultFailed.msg);
   
   });
+  
 
-
-  /*it('should check the localStorage', function () {
+  it('should check the localStorage', function () {
     //vars
     var id='1';
+    var comment= 'testing';
 
-    var store = {};
-    var commentsInStore;
-    var ls = function() {
-        return JSON.parse(store.storage);
-    };
+    //spies 
+    spyOn(localStorageService, 'get').and.callThrough();
+ 
+    //call when storage empty
+    scope.storageLocal(id);
+     
+    //expects
+    expect(localStorageService.get).toHaveBeenCalled();
+    expect(localStorageService.get).toHaveBeenCalledWith(id);
+
+    expect(scope.comments).toEqual([]);
+
+    //call when storage not empty
+    localStorageService.set(id, JSON.stringify(comment));
+    scope.storageLocal(id);
+     
+    //expects
+    expect(localStorageService.get).toHaveBeenCalled();
+    expect(localStorageService.get).toHaveBeenCalledWith(id);
+
+    expect(scope.comments).toEqual(comment);
+  
+  });
+
+  it('should check $scope.addComment', function () {
+    //vars
+    scope.commenttoadd=undefined;
 
     //spies
-    spyOn(localStorageService, 'set');
+    spyOn($window, 'alert');
 
-    spyOn(localStorageService, 'get').andCallFake(function(key) {
-      return store[key];
-    });
-    
-    spyOn(scope, 'storageLocal').and.callThrough();
+    //call with empty value
+    scope.addComment();
 
-    //call
-    //scope.storageLocal(id);
-
-    commentsInStore = localStorageService.get(id);
-    scope.comments = JSON.parse(commentsInStore) || [];
-
-    expect(scope.comments).toEqual(store[id]);
-    
     //expects
-    //expect(localStorageService.get).toHaveBeenCalled();
-  
-  });*/
+    expect(scope.comments).toEqual([]);
+    expect(scope.comments.length).toEqual(0);
+    expect($window.alert).toHaveBeenCalled();
+    expect($window.alert).toHaveBeenCalledWith(apiConstants.EMPTY_INPUT_MSG);
+
+    //call with value
+    scope.commenttoadd='anything';
+    scope.addComment();
+
+    //expects
+    expect(scope.comments.length).toBeGreaterThan(0);
+    //empty the value
+    expect(scope.commenttoadd).toEqual('');
+
+  });
+
+  it('should check $scope.editComment', function () {
+    //vars
+    var index= 0;
+    var text= '';
+    var comments= [{text: 'anything', date: '10 de julio de 2016, 12:31:21 CEST'}];
+    scope.comments=[{text: 'anything', date: '10 de julio de 2016, 12:31:21 CEST'}];
+
+    //spies
+    spyOn($window, 'alert');
+
+    //call with empty value
+    scope.editComment(index, text);
+
+    //expects
+    expect($window.alert).toHaveBeenCalled();
+    expect($window.alert).toHaveBeenCalledWith(apiConstants.EMPTY_INPUT_MSG);
+
+    expect(scope.comments.length).toEqual(1);   
+    expect(scope.comments).toEqual(comments);
+    expect(scope.comments[0].text).toEqual(comments[0].text);
+    expect(scope.comments[0].date).toEqual(comments[0].date);   
+
+    //call with value
+    text='a few words';
+    scope.editComment(index, text);
+
+    //expects
+    expect(scope.comments.length).toEqual(1);
+    expect(scope.comments).not.toEqual(comments);
+    expect(scope.comments[0].text).toEqual(text);
+    expect(scope.comments[0].date).not.toEqual(comments[0].date);
+  });
+
+
+  it('should check $scope.removeComment', function () {
+    //vars
+    var comments=[{text: 'anything', date: '10 de julio de 2016, 12:31:21 CEST'}, {text: 'a few words', date: '11 de julio de 2016, 12:31:21 CEST'}];
+    scope.comments=[{text: 'anything', date: '10 de julio de 2016, 12:31:21 CEST'}, {text: 'a few words', date: '11 de julio de 2016, 12:31:21 CEST'}];
+
+    //expect
+    expect(scope.comments.length).toEqual(2);
+
+    //call with empty value
+    scope.removeComment(0);
+
+    //expects
+    expect(scope.comments.length).toEqual(1);
+    expect(scope.comments).toEqual([comments[1]]);
+  });
 
 
   it('should check that sharingService.getAssets fills scope.shares', function () {

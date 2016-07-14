@@ -158,7 +158,11 @@
 			//get local storage
 	 		var commentsInStore = localStorageService.get(id);
 	 		//comments is the parsed content of the localstore of an empty array
-	 		$scope.comments = JSON.parse(commentsInStore) || [];
+	 		if(commentsInStore){
+	 			$scope.comments = JSON.parse(commentsInStore)
+	 		}else{
+	 			$scope.comments =[];
+	 		}
 
 	 		/*use the angular $watch listener to watch for changes in the value of $scope.comments. 
 		 	If someone adds, edit or removes a comment, it will then keep our local storage comments datastore in sync.
@@ -180,7 +184,7 @@
 			 		var dts=utilService.newLocaleStringDate();
 			 	
 			 		var data={text:$scope.commenttoadd, date:dts};
-			 		console.log(data);
+			 		//console.log(data);
 			 		
 			 		$scope.comments.push(data);
 			 		$scope.commenttoadd='';
@@ -199,7 +203,7 @@
 
 			 		$scope.comments[index]= data;
 
-			 		console.log(data);
+			 		//console.log(data);
 		 		}else{
 		 			$window.alert(apiConstants.EMPTY_INPUT_MSG);	
 		 		}
