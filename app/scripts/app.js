@@ -20,7 +20,8 @@ var app= angular
     'ngTouch',
     'ui.bootstrap',
     'highcharts-ng',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'angularUtils.directives.dirPagination'
   ]);
 
   app.config(function ($routeProvider) {

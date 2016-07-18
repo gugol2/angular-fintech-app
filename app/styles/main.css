@@ -96,3 +96,9 @@ body {
 .navbar-brand--jsc{
   font-size: 100%;
 }
+
+.sort-icon {
+  font-size: 9px;
+  margin-left: 3px;
+}
+

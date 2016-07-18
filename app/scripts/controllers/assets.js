@@ -15,10 +15,15 @@
 
 	 function AssetsCtrl($scope, dataService, $window, traceService, sharingService, apiConstants) {
 
+	 	$scope.shares=[];
+	 	$scope.numPerPage = 5;
+
 	 	//Table functionality
 	 	$scope.reverse = true;  
 	 	$scope.currentPage = 1;  
-	 	$scope.order = function (predicate) {  
+	 	$scope.maxNumberPaginationLinks=5;
+	 	$scope.order = function (predicate) {
+	 		//This way we always do the first ordering as descending   
 	 		$scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;  
 	 		$scope.predicate = predicate;
 	 	}; 
@@ -33,16 +38,6 @@
 
 				//Check that the response is not empty
 				if($scope.shares && $scope.shares.length){
-					$scope.totalItems = $scope.shares.length;  
-					$scope.numPerPage = 5;  
-					$scope.paginate = function (value) {  
-						var begin, end, index;  
-						begin = ($scope.currentPage - 1) * $scope.numPerPage;  
-						end = begin + $scope.numPerPage;  
-						index = $scope.shares.indexOf(value);  
-						return (begin <= index && index < end);  
-					};
-
 					sharingService.setAssets($scope.shares);  
 				}
 				else{
