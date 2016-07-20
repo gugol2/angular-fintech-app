@@ -23,9 +23,7 @@
 
     function getAssets(){
 
-      var deferred = $q.defer();
-
-      $http({
+      var promise=$http({
         url: apiConstants.API_URL,
         method: 'GET',
         dataType: 'json', 
@@ -33,29 +31,27 @@
         headers: apiConstants.API_HEADERS
       })
 
-      .success(function (data, status) {
+      .then(function (response) {
           // The promise is resolved once the HTTP call is successful.
-          if(status>=200 && status<400){
-            deferred.resolve(data);
+          if(response.status>=200 && response.status<400){
+            return response.data;
           }else{
-            deferred.reject(status);
+            return response.status;
           }  
-        })
-
-      .error(function(reason,status) {
+      },
+      function(reason) {
           // The promise is rejected if there is an error with the HTTP call.
           if(reason){
-            deferred.reject({msg:reason.error, status:status});
+            return {msg:reason.statusText, status:reason.status};
             //if we don't get any answers the proxy/api will probably be down
           }else{
             //the error is a property of the reason object when it exists, so I mock the same structure when it does not.
-            deferred.reject({msg:'Call error', status:status});
+            return {msg:'Call error', status:500};
           }
 
         });
 
-      // The promise is returned to the caller
-      return deferred.promise;
+        return promise;
 
     }
 
