@@ -49,8 +49,8 @@
               throw {statusText:'Call error', status:500};
             }
 
-          }
-        );
+        }
+      );
 
         return promise;
     }

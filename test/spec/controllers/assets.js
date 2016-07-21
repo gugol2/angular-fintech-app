@@ -77,9 +77,7 @@ describe('Controller: AssetsCtrl', function () {
     // Since we called apply, not we can perform our assertions
     expect(scope.shares).toEqual(jasmine.any(Array));
 
-    expect(scope.totalItems).toEqual(assetsResult.length);
     expect(scope.numPerPage).toEqual(5);
-    expect(scope.paginate).toEqual(jasmine.any(Function));
 
     expect(sharingService.setAssets).toHaveBeenCalled();
     expect(sharingService.setAssets).toHaveBeenCalledWith(assetsResult);
@@ -126,7 +124,7 @@ describe('Controller: AssetsCtrl', function () {
 
   it('should alert the reason and trace the reason and the status when the call to loadAssets is not successful', function () {
     //vars
-    var assetsResultFailed= { msg: 'whatever', status: 400}; 
+    var assetsResultFailed= { statusText: 'whatever', status: 400}; 
 
     //spies
     spyOn(sharingService,'setAssets'); 
@@ -147,16 +145,16 @@ describe('Controller: AssetsCtrl', function () {
     scope.$apply();
 
     // Since we called apply, not we can perform our assertions
-    expect(scope.shares).toBeUndefined();
+    expect(scope.shares.length).toBe(0);
 
     expect(scope.totalItems).toBeUndefined();
     expect(sharingService.setAssets).not.toHaveBeenCalled();
 
     expect(traceService.catcher).toHaveBeenCalled();
-    expect(traceService.catcher).toHaveBeenCalledWith(assetsResultFailed.msg);
+    expect(traceService.catcher).toHaveBeenCalledWith(assetsResultFailed.statusText);
 
     expect($window.alert).toHaveBeenCalled();
-    expect($window.alert).toHaveBeenCalledWith(assetsResultFailed.msg);
+    expect($window.alert).toHaveBeenCalledWith(assetsResultFailed.statusText);
   
   });
 
