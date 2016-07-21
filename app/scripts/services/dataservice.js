@@ -36,23 +36,23 @@
           if(response.status>=200 && response.status<400){
             return response.data;
           }else{
-            return response.status;
+            throw response;
           }  
-      },
-      function(reason) {
-          // The promise is rejected if there is an error with the HTTP call.
-          if(reason){
-            return {msg:reason.statusText, status:reason.status};
-            //if we don't get any answers the proxy/api will probably be down
-          }else{
-            //the error is a property of the reason object when it exists, so I mock the same structure when it does not.
-            return {msg:'Call error', status:500};
-          }
+        },
+        function(reason) {
+            // The promise is rejected if there is an error with the HTTP call.
+            if(reason){
+              throw reason;
+            }else{
+              //If we don't get any answers the proxy/api will probably be down.
+              //The error is a property of the reason object when it exists, so I mock the same structure when it does not.
+              throw {statusText:'Call error', status:500};
+            }
 
-        });
+          }
+        );
 
         return promise;
-
     }
 
 
@@ -81,9 +81,9 @@
           // The promise is rejected if there is an error with the HTTP call.
           if(reason){
             deferred.reject({msg:reason.error, status:status});
-            //if we don't get any answers the proxy/api will probably be down
           }else{
-            //the error is a property of the reason object when it exists, so I mock the same structure when it does not.
+            //If we don't get any answers the proxy/api will probably be down.
+            //The error is a property of the reason object when it exists, so I mock the same structure when it does not.
             deferred.reject({msg:'Call error', status:status});
           }
 

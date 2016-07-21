@@ -47,8 +47,8 @@
 
 			}).catch(function(reason){
 			    //if exceptions call the traceService catcher with a message and the exception object 
-			    traceService.catcher(reason.msg)(reason.status);
-			    $window.alert(reason.msg);
+			    traceService.catcher(reason.statusText)(reason.status);
+			    $window.alert(reason.statusText);
 
 			});
 
