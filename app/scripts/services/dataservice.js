@@ -23,7 +23,10 @@
 
     function getAssets(){
 
-      var promise=$http({
+      // We make use of Angular's $q library to create the deferred instance
+      var deferred = $q.defer();
+
+      $http({
         url: apiConstants.API_URL,
         method: 'GET',
         dataType: 'json', 
@@ -34,25 +37,24 @@
       .then(function (response) {
           // The promise is resolved once the HTTP call is successful.
           if(response.status>=200 && response.status<400){
-            return response.data;
+            deferred.resolve(response.data);
           }else{
-            throw response;
+            deferred.reject(response);
           }  
         },
         function(reason) {
-            // The promise is rejected if there is an error with the HTTP call.
-            if(reason){
-              throw reason;
-            }else{
-              //If we don't get any answers the proxy/api will probably be down.
-              //The error is a property of the reason object when it exists, so I mock the same structure when it does not.
-              throw {statusText:'Call error', status:500};
-            }
-
+          // The promise is rejected if there is an error with the HTTP call.
+          if(reason.statusText){
+            deferred.reject(reason);
+          }else{
+            //If we don't get any answers the proxy/api will probably be down.
+            //The error is a property of the reason object when it exists, so I mock the same structure when it does not.
+            deferred.reject({statusText:'Call error', status:500});
+          }
         }
       );
 
-        return promise;
+      return deferred.promise;
     }
 
 
