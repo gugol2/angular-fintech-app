@@ -36,11 +36,7 @@
 
       .then(function (response) {
           // The promise is resolved once the HTTP call is successful.
-          if(response.status>=200 && response.status<400){
-            deferred.resolve(response.data);
-          }else{
-            deferred.reject(response);
-          }  
+          deferred.resolve(response.data);
         },
         function(reason) {
           // The promise is rejected if there is an error with the HTTP call.
