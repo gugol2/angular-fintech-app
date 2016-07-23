@@ -11,9 +11,9 @@
 	 */
 	var app= angular.module('angularFinancialPortalApp');
 
-	app.controller('AssetfileCtrl', ['$scope', 'dataService', '$window', '$routeParams', '$location', 'apiConstants', 'traceService', 'utilService', 'sharingService', 'localStorageService', AssetfileCtrl]);
+	app.controller('AssetfileCtrl', ['$scope', 'dataService', '$window', '$routeParams', '$location', 'apiConstants', 'traceService', 'utilService', 'sharingService', 'localStorageService', '$timeout', AssetfileCtrl]);
 
-	function AssetfileCtrl($scope, dataService, $window, $routeParams, $location, apiConstants, traceService, utilService, sharingService, localStorageService) {
+	function AssetfileCtrl($scope, dataService, $window, $routeParams, $location, apiConstants, traceService, utilService, sharingService, localStorageService, $timeout) {
 
 		$scope.regions=[];
 		$scope.riskFamilies=[];
@@ -60,7 +60,15 @@
 				title: {
 					text:'Price'
 				}
-			}
+			},
+			func: function () {
+	            $timeout(function () {
+	            	angular.element.datepicker.setDefaults({
+				        dateFormat: 'yy-mm-dd'
+				    });
+	              	angular.element('input.highcharts-range-selector').datepicker();
+	            }, 0);
+	        }
 		};
 
 		//tab/navbar functionality
@@ -125,6 +133,7 @@
 
 					//fill the graph
 					$scope.fillGraph();
+
 				}
 				else{
 					traceService.catcher(apiConstants.EMPTY_DATA_API_MSG)(200);
