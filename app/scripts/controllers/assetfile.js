@@ -44,7 +44,7 @@
 				text:'Price History'
 			},
 			subtitle: {
-				text: 'Source: jsonstub.com/etsfintech/symbols/'
+				text: 'Source: '+apiConstants.API_URL
 			},
 
 			loading: true,
@@ -104,7 +104,7 @@
 
 			$scope.chartConfig.yAxis={title:{text:'Price ' + $scope.shareFile.currency.symbol}};
 
-			$scope.chartConfig.subtitle={text: 'Source: jsonstub.com/etsfintech/symbols/' +$scope.shareFile.id};
+			$scope.chartConfig.subtitle={text: 'Source: '+apiConstants.API_URL+'/'+$scope.shareFile.id};
 
 			$scope.chartConfig.loading=false;
 
@@ -142,8 +142,8 @@
 					
 			}).catch(function(reason){
 			    //if exceptions call the traceService catcher with a message and the exception object 
-			    traceService.catcher(reason.msg)(reason.status);
-			    $window.alert(reason.msg);	
+			    traceService.catcher(reason.statusText)(reason.status);
+			    $window.alert(reason.statusText);	
 
 			});
 
