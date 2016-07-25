@@ -102,3 +102,7 @@ body {
   margin-left: 3px;
 }
 
+#jsc--error{
+  height: 50px;
+  padding: 1%;
+}

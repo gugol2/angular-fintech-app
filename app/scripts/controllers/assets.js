@@ -17,6 +17,7 @@
 
 	 	$scope.shares=[];
 	 	$scope.numPerPage = 5;
+	 	$scope.isError;
 
 	 	//Table functionality
 	 	$scope.reverse = true;  
@@ -30,7 +31,7 @@
 
 		//Load the assets
 		$scope.loadAssets=function(){
-
+			$scope.isLoading=true;
 			//API call
 			dataService.getAssets().then(function(assetsResult){
 
@@ -38,18 +39,22 @@
 
 				//Check that the response is not empty
 				if($scope.shares && $scope.shares.length){
-					sharingService.setAssets($scope.shares);  
+					sharingService.setAssets($scope.shares);
+					$scope.isLoading=false;  
 				}
 				else{
 					traceService.catcher(apiConstants.EMPTY_DATA_API_MSG)(200);
 			    	$window.alert(apiConstants.EMPTY_DATA_API_MSG);
+			    	$scope.isLoading=false;
+			    	$scope.isError=apiConstants.EMPTY_DATA_API_MSG;
 				}
 
 			}).catch(function(reason){
 			    //if exceptions call the traceService catcher with a message and the exception object 
 			    traceService.catcher(reason.statusText)(reason.status);
 			    $window.alert(reason.statusText);
-
+			    $scope.isLoading=false;
+			    $scope.isError=reason.statusText;
 			});
 
 		};

@@ -21,7 +21,7 @@
 		        'JsonStub-User-Key': '02623b16-56ad-4b84-80a5-03142b50458d',
 		        'JsonStub-Project-Key': '0ebb2867-8ec9-44ba-af70-39155b39454b'
 			},
-			'API_URL' : '//jsonstub.com/fintechapi/assets',
+			'API_URL' : '//jsonstub.com/fintechapi/assets2',
 			/*'API_URL' : '//jsonstub.com/your/first/api',*/
 			/*'API_URL' : '//google.es',*/
 			'API_DATA_PATTERN_REGION' : /(region_level\d*)/,
