@@ -21,6 +21,7 @@
 		$scope.prices=[];
 		$scope.location=$location.path();
 		$scope.shares=[];
+		$scope.isError;
 
 		//draw chart
 		$scope.chartConfig = {
@@ -44,7 +45,7 @@
 				text:'Price History'
 			},
 			subtitle: {
-				text: 'Source: '+apiConstants.API_URL
+				text: 'Source: '+apiConstants.API_URL+'/'+$routeParams.id
 			},
 
 			loading: true,
@@ -63,6 +64,7 @@
 			},
 			func: function () {
 	            $timeout(function () {
+	            	//to make the calendar appear at the date that is already in the input
 	            	angular.element.datepicker.setDefaults({
 				        dateFormat: 'yy-mm-dd'
 				    });
@@ -104,11 +106,21 @@
 
 			$scope.chartConfig.yAxis={title:{text:'Price ' + $scope.shareFile.currency.symbol}};
 
-			$scope.chartConfig.subtitle={text: 'Source: '+apiConstants.API_URL+'/'+$scope.shareFile.id};
-
 			$scope.chartConfig.loading=false;
 
 		};
+
+		/*set the loading message in the chart*/
+		$scope.setChartLoading=function (msg) {
+			$timeout(function () {
+		        $scope.chartConfig.loading=msg;
+		    }, 0);
+		}
+
+		/*set the error color for the chart*/
+		$scope.setChartErrorColor=function (color) {
+			$scope.chartConfig.options.chart.backgroundColor=color;
+		}
 
 	    //Load the asset info
 		$scope.loadAssetFile=function(id){
@@ -138,14 +150,20 @@
 				else{
 					traceService.catcher(apiConstants.EMPTY_DATA_API_MSG)(200);
 			    	$window.alert(apiConstants.EMPTY_DATA_API_MSG);
-			    	$scope.chartConfig.loading=apiConstants.EMPTY_DATA_API_MSG;
+
+			    	$scope.isError=apiConstants.EMPTY_DATA_API_MSG;
+			    	$scope.setChartErrorColor(apiConstants.CHART_ERROR_COLOR);
+			    	$scope.setChartLoading(apiConstants.EMPTY_DATA_API_MSG);
 				}
 					
 			}).catch(function(reason){
 			    //if exceptions call the traceService catcher with a message and the exception object 
 			    traceService.catcher(reason.statusText)(reason.status);
 			    $window.alert(reason.statusText);
-			    $scope.chartConfig.loading=reason.statusText;
+			    
+			    $scope.isError=reason.statusText;
+			    $scope.setChartErrorColor(apiConstants.CHART_ERROR_COLOR);
+			    $scope.setChartLoading(reason.statusText);
 			});
 
 		};

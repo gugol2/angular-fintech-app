@@ -35,13 +35,14 @@
 <div class="panel panel-default">
 	<!-- Default panel contents -->
 	<div class="panel-heading">
-		<h3 class="text-center">{{shareFile.name}}</h3>
+		<h3 class="text-center" ng-hide="isError">{{shareFile.name}}</h3>
+		<h3 class="text-center" ng-show="isError">{{isError}}</h3>
 	</div>
-	<div class="panel-body">
+	<div class="panel-body" ng-hide="isError">
 		<h4>Details about this asset:</h4>
 	</div>
 
-	<ul class="list-group">
+	<ul class="list-group" ng-hide="isError">
 	    <li class="list-group-item"><strong>Currency:</strong> {{shareFile.currency.name}}</li>
 	    <li class="list-group-item"><strong>Issuer:</strong> {{shareFile.issuer.name}}</li>
 	    <li class="list-group-item"><strong>ISIN:</strong> {{shareFile.isin}}</li>
@@ -52,7 +53,7 @@
 	
 	<!-- Grap -->
 	<div>
-        <highchart id="chart1" config="chartConfig"></highchart>
+        <highchart id="chart" config="chartConfig"></highchart>
     </div>
 	
 	<!-- Comments -->

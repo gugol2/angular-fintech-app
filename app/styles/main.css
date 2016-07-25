@@ -106,3 +106,21 @@ body {
   height: 50px;
   padding: 1%;
 }
+
+.pannel--assets--error{
+  background-color: #f2dede;
+}
+
+/*logo in the navbar*/
+.navbar--brand--custom{
+  padding-top: 1.5px;
+  padding-left: 5px;
+}
+
+.navbar--brand--custom img{
+  border-radius: 5px;
+}
+
+
+
+

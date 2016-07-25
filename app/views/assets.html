@@ -1,8 +1,9 @@
 
-<div class="panel panel-default">
+<div class="panel panel-default" ng-class="{'pannel--assets--error' : isError}">
 	<!-- Default panel contents -->
 	<div class="panel-heading">
-		<h3 class="text-center">Your Asset List</h3>
+		<h3 class="text-center" ng-hide="isError">Your Asset List</h3>
+		<h3 class="text-center" ng-show="isError">{{isError}}</h3>
 	</div>
 	<div class="panel-body" ng-hide="isLoading || isError">
 		<p>Here you can find the assets of your portfolio with their historical and latest prices along with some other information like currency and issuer.</p>
@@ -11,11 +12,12 @@
 	
 	<!-- Spinner -->
 	<div class="text-center">  
-	  <img id="jsc--pinner" src="images/spinningwheel2.gif" ng-show="isLoading" />
+	  <img id="jsc--pinner" src="images/loading.gif" ng-show="isLoading" />
 	</div>
-
-	<div id="jsc--error" class="text-center bg-danger">  
-	  <span ng-show="isError">{{isError}}</span>
+	
+	<!-- Error Msg -->
+	<div id="jsc--error" class="text-center" ng-show="isError">  
+	  <span>Sorry, content is not available</span>
 	</div>
 
 	<!-- Table -->

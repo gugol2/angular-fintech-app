@@ -134,7 +134,6 @@ describe('Controller: AssetfileCtrl', function () {
     expect(scope.chartConfig.series[0].data).toEqual(scope.prices);
 
     expect(scope.chartConfig.yAxis.title.text).toEqual('Price ' + scope.shareFile.currency.symbol);
-    expect(scope.chartConfig.subtitle.text).toEqual('Source: jsonstub.com/etsfintech/symbols/' +scope.shareFile.id);
 
     expect(scope.chartConfig.loading).toBe(false);
 
@@ -153,7 +152,12 @@ describe('Controller: AssetfileCtrl', function () {
     spyOn(utilService,'mapObjectToArray'); 
     spyOn(scope,'fillGraph');
     spyOn(traceService,'catcher').and.callThrough();
-    spyOn($window, 'alert'); 
+    spyOn($window, 'alert');
+    spyOn(scope, 'setChartErrorColor');
+    spyOn(scope, 'setChartLoading');   
+
+    //check before call
+    expect(scope.isError).toBeUndefined();
 
     //call
     scope.loadAssetFile(1);
@@ -182,6 +186,11 @@ describe('Controller: AssetfileCtrl', function () {
 
     expect(traceService.catcher).toHaveBeenCalled();
     expect(traceService.catcher).toHaveBeenCalledWith(apiConstants.EMPTY_DATA_API_MSG);
+    expect(scope.setChartErrorColor).toHaveBeenCalled();
+    expect(scope.setChartErrorColor).toHaveBeenCalledWith(apiConstants.CHART_ERROR_COLOR);
+    expect(scope.setChartLoading).toHaveBeenCalled();
+    expect(scope.setChartLoading).toHaveBeenCalledWith(apiConstants.EMPTY_DATA_API_MSG);
+    expect(scope.isError).not.toBeUndefined();
 
     expect($window.alert).toHaveBeenCalled();
     expect($window.alert).toHaveBeenCalledWith(apiConstants.EMPTY_DATA_API_MSG);
@@ -191,7 +200,7 @@ describe('Controller: AssetfileCtrl', function () {
 
   it('should alert the reason and trace the reason and the status when the call to loadAssetFile is not successful', function () {
     //vars
-    var assetFileResultFailed= { msg: 'whatever', status: 400}; 
+    var assetFileResultFailed= { statusText: 'whatever', status: 400}; 
 
     //spies
     spyOn(sharingService,'getAssets'); 
@@ -202,6 +211,11 @@ describe('Controller: AssetfileCtrl', function () {
     spyOn(scope,'fillGraph');
     spyOn(traceService,'catcher').and.callThrough();
     spyOn($window, 'alert'); 
+    spyOn(scope, 'setChartErrorColor');
+    spyOn(scope, 'setChartLoading');   
+
+    //check before call
+    expect(scope.isError).toBeUndefined();
 
     //call
     scope.loadAssetFile(1);
@@ -229,10 +243,15 @@ describe('Controller: AssetfileCtrl', function () {
     expect(scope.fillGraph).not.toHaveBeenCalledWith();
 
     expect(traceService.catcher).toHaveBeenCalled();
-    expect(traceService.catcher).toHaveBeenCalledWith(assetFileResultFailed.msg);
+    expect(traceService.catcher).toHaveBeenCalledWith(assetFileResultFailed.statusText);
+    expect(scope.setChartErrorColor).toHaveBeenCalled();
+    expect(scope.setChartErrorColor).toHaveBeenCalledWith(apiConstants.CHART_ERROR_COLOR);
+    expect(scope.setChartLoading).toHaveBeenCalled();
+    expect(scope.setChartLoading).toHaveBeenCalledWith(assetFileResultFailed.statusText);
+    expect(scope.isError).not.toBeUndefined();
 
     expect($window.alert).toHaveBeenCalled();
-    expect($window.alert).toHaveBeenCalledWith(assetFileResultFailed.msg);
+    expect($window.alert).toHaveBeenCalledWith(assetFileResultFailed.statusText);
   
   });
   

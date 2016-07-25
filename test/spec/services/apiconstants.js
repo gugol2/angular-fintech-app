@@ -27,6 +27,7 @@ describe('Service: apiConstants', function () {
 
     expect(apiConstants.EMPTY_INPUT_MSG).toEqual(jasmine.any(String));
     expect(apiConstants.EMPTY_DATA_API_MSG).toEqual(jasmine.any(String));
+    expect(apiConstants.CHART_ERROR_COLOR).toEqual(jasmine.any(String));
     
   });
 
