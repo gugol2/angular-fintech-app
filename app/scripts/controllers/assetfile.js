@@ -138,13 +138,14 @@
 				else{
 					traceService.catcher(apiConstants.EMPTY_DATA_API_MSG)(200);
 			    	$window.alert(apiConstants.EMPTY_DATA_API_MSG);
+			    	$scope.chartConfig.loading=apiConstants.EMPTY_DATA_API_MSG;
 				}
 					
 			}).catch(function(reason){
 			    //if exceptions call the traceService catcher with a message and the exception object 
 			    traceService.catcher(reason.statusText)(reason.status);
-			    $window.alert(reason.statusText);	
-
+			    $window.alert(reason.statusText);
+			    $scope.chartConfig.loading=reason.statusText;
 			});
 
 		};
