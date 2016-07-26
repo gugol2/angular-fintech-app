@@ -124,7 +124,7 @@ body {
 /**/
 
 .navbar-default {
-  background-color: #04264b;
+  background-color: #290053;
   border-color: #9b59b6;
 }
 .navbar-default .navbar-brand {
@@ -197,16 +197,16 @@ body {
   background-color: #f2e9f5;
 }
 
-.btn-primary:hover {
-  color: #2114ec;
-  background-color: #9b59b6;
+.btn-primary{
+  color: #fff;
+  background-color: #290053;
   border-color: #9b59b6;
 }
 
-.btn-primary{
-  color: #fff;
-  background-color: #04264b;
-  border-color: #9b59b6;
+.btn-primary:hover {
+  color: #2114ec;
+  background-color: #9b59b6;
+  /*background-color: #290053;*/
 }
 
 .panel-default > .panel-heading, .panel-default > .panel-footer {
@@ -220,4 +220,24 @@ body {
 
 .even {
   background-color: #fdf7ff !important;
+}
+
+.even:hover {
+  background-color: #f2e9f5 !important;
+}
+
+.odd:hover {
+  background-color: #f2e9f5 !important;
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+  color: #fff;
+  background-color: #9b59b6;
+  border-color: #9b59b6;
+}
+
+.pagination > li > a:hover, .pagination > li > span:hover, .pagination > li > a:focus, .pagination > li > span:focus {
+  color: #2114ec;
+  background-color: #f2e9f5;
+  border-color: #9b59b6;
 }
