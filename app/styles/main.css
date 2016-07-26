@@ -121,6 +121,103 @@ body {
   border-radius: 5px;
 }
 
+/**/
 
+.navbar-default {
+  background-color: #04264b;
+  border-color: #9b59b6;
+}
+.navbar-default .navbar-brand {
+  color: #ffffff;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #2114ec;
+}
+.navbar-default .navbar-text {
+  color: #ffffff;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #ffffff;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #2114ec;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #2114ec;
+  background-color: #9b59b6;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #2114ec;
+  background-color: #9b59b6;
+}
+.navbar-default .navbar-toggle {
+  border-color: #9b59b6;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #9b59b6;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #ffffff;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #ffffff;
+}
+.navbar-default .navbar-link {
+  color: #ffffff;
+}
+.navbar-default .navbar-link:hover {
+  color: #2114ec;
+}
 
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #ffffff;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #2114ec;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #2114ec;
+    background-color: #9b59b6;
+  }
+}
 
+.jumbotron{
+  background-color: #f2e9f5;
+}
+
+.btn-primary:hover {
+  color: #2114ec;
+  background-color: #9b59b6;
+  border-color: #9b59b6;
+}
+
+.btn-primary{
+  color: #fff;
+  background-color: #04264b;
+  border-color: #9b59b6;
+}
+
+.panel-default > .panel-heading, .panel-default > .panel-footer {
+    background-color: #f2e9f5;
+    border-color: #9b59b6;
+}
+
+.panel-default{
+  border-color: #9b59b6;
+}
+
+.even {
+  background-color: #fdf7ff !important;
+}

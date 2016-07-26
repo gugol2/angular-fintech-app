@@ -46,7 +46,7 @@
 					<td><input type="text" ng-model="search.risk_family"/></td>  
 				</tr>  
 		
-				<tr dir-paginate="share in shares | orderBy:predicate:reverse | filter:search | itemsPerPage:numPerPage track by $index" ng-class-odd="'odd'">   
+				<tr dir-paginate="share in shares | orderBy:predicate:reverse | filter:search | itemsPerPage:numPerPage track by $index" ng-class-odd="'odd'" ng-class-even="'even'">   
 					<td><a href="#/assets/{{share.id}}">{{ share.name }}</a></td>
 					<td><a href="#/assets/{{share.id}}">{{ share.currency }}</a></td>
 					<td><a href="#/assets/{{share.id}}">{{ share.risk_family }}</a></td>

@@ -309,7 +309,7 @@ module.exports = function (grunt) {
 
           {
             expand : true,
-            cwd : 'bower_components/jquery-ui/themes/base/images',
+            cwd : 'bower_components/jquery-ui/themes/eggplant/images',
             src : '**/*.{png,jpg,jpeg,gif}',
             dest : '<%= yeoman.dist %>/styles/images'
           }
