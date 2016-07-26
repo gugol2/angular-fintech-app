@@ -81,6 +81,7 @@ describe('Controller: AssetsCtrl', function () {
 
     expect(sharingService.setAssets).toHaveBeenCalled();
     expect(sharingService.setAssets).toHaveBeenCalledWith(assetsResult);
+    expect(scope.isError).toBe(false);
   
   });
 
@@ -93,6 +94,9 @@ describe('Controller: AssetsCtrl', function () {
     spyOn(sharingService,'setAssets'); 
     spyOn(traceService,'catcher').and.callThrough();
     spyOn($window, 'alert');
+
+    //before the call
+    expect(scope.isError).toBe(false);
 
     //call
     scope.loadAssets();
@@ -118,6 +122,7 @@ describe('Controller: AssetsCtrl', function () {
 
     expect($window.alert).toHaveBeenCalled();
     expect($window.alert).toHaveBeenCalledWith(apiConstants.EMPTY_DATA_API_MSG);
+    expect(scope.isError).toEqual(apiConstants.EMPTY_DATA_API_MSG);
   
   });
 
@@ -130,6 +135,9 @@ describe('Controller: AssetsCtrl', function () {
     spyOn(sharingService,'setAssets'); 
     spyOn(traceService,'catcher').and.callThrough();
     spyOn($window, 'alert');
+
+    //before the call
+    expect(scope.isError).toBe(false);
 
     //call
     scope.loadAssets();
@@ -155,6 +163,7 @@ describe('Controller: AssetsCtrl', function () {
 
     expect($window.alert).toHaveBeenCalled();
     expect($window.alert).toHaveBeenCalledWith(assetsResultFailed.statusText);
+    expect(scope.isError).toEqual(assetsResultFailed.statusText);
   
   });
 

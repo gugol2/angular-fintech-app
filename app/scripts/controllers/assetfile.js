@@ -21,7 +21,7 @@
 		$scope.prices=[];
 		$scope.location=$location.path();
 		$scope.shares=[];
-		$scope.isError;
+		$scope.isError=false;
 
 		//draw chart
 		$scope.chartConfig = {
@@ -115,12 +115,12 @@
 			$timeout(function () {
 		        $scope.chartConfig.loading=msg;
 		    }, 0);
-		}
+		};
 
 		/*set the error color for the chart*/
 		$scope.setChartErrorColor=function (color) {
 			$scope.chartConfig.options.chart.backgroundColor=color;
-		}
+		};
 
 	    //Load the asset info
 		$scope.loadAssetFile=function(id){

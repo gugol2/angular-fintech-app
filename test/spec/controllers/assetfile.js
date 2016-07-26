@@ -157,7 +157,7 @@ describe('Controller: AssetfileCtrl', function () {
     spyOn(scope, 'setChartLoading');   
 
     //check before call
-    expect(scope.isError).toBeUndefined();
+    expect(scope.isError).toBe(false);
 
     //call
     scope.loadAssetFile(1);
@@ -190,7 +190,7 @@ describe('Controller: AssetfileCtrl', function () {
     expect(scope.setChartErrorColor).toHaveBeenCalledWith(apiConstants.CHART_ERROR_COLOR);
     expect(scope.setChartLoading).toHaveBeenCalled();
     expect(scope.setChartLoading).toHaveBeenCalledWith(apiConstants.EMPTY_DATA_API_MSG);
-    expect(scope.isError).not.toBeUndefined();
+    expect(scope.isError).toEqual(apiConstants.EMPTY_DATA_API_MSG);
 
     expect($window.alert).toHaveBeenCalled();
     expect($window.alert).toHaveBeenCalledWith(apiConstants.EMPTY_DATA_API_MSG);
@@ -215,7 +215,7 @@ describe('Controller: AssetfileCtrl', function () {
     spyOn(scope, 'setChartLoading');   
 
     //check before call
-    expect(scope.isError).toBeUndefined();
+    expect(scope.isError).toBe(false);
 
     //call
     scope.loadAssetFile(1);
@@ -248,7 +248,7 @@ describe('Controller: AssetfileCtrl', function () {
     expect(scope.setChartErrorColor).toHaveBeenCalledWith(apiConstants.CHART_ERROR_COLOR);
     expect(scope.setChartLoading).toHaveBeenCalled();
     expect(scope.setChartLoading).toHaveBeenCalledWith(assetFileResultFailed.statusText);
-    expect(scope.isError).not.toBeUndefined();
+    expect(scope.isError).toEqual(assetFileResultFailed.statusText);
 
     expect($window.alert).toHaveBeenCalled();
     expect($window.alert).toHaveBeenCalledWith(assetFileResultFailed.statusText);

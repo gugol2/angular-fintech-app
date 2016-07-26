@@ -17,7 +17,7 @@
 
 	 	$scope.shares=[];
 	 	$scope.numPerPage = 5;
-	 	$scope.isError;
+	 	$scope.isError=false;
 
 	 	//Table functionality
 	 	$scope.reverse = true;  
