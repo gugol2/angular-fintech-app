@@ -84,30 +84,20 @@ body {
 
 
 /*JSC Tweaks*/
-/*whole comment paragraph*/
-.comment--jsc{
-  padding: 1px 5px;
-  margin:0px;
+/* jumbotron */
+.jumbotron{
+  background-color: #f2e9f5;
+  border: 0.5px solid #9b59b6;
 }
 
-/*smaller date text*/
-.smaller--jsc{
-  font-size: 70% !important;
-}
-
-/*smaller brand for second navbar*/
-.navbar-brand--jsc{
-  font-size: 100%;
-}
-
-/*arrow icon for the table sorting headers*/
-.sort-icon {
-  font-size: 9px;
-  margin-left: 3px;
+/*Rounded logo borders*/
+.logo--img{
+  border: 1px solid #9b59b6;
+  border-radius: 50%;
 }
 
 /*error div in assets*/
-#jsc--error{
+#text--error{
   height: 50px;
   padding: 1%;
 }
@@ -116,7 +106,7 @@ body {
   background-color: #f2dede;
 }
 
-/*logo in the navbar*/
+/*logo in the main navbar*/
 .navbar--brand--custom{
   padding-top: 1.5px;
   padding-left: 5px;
@@ -217,6 +207,12 @@ body {
   }
 }
 
+
+/*smaller brand for second navbar*/
+.navbar-brand--inverse{
+  font-size: 100%;
+}
+
 /* second navbar is default--inverse*/
 .navbar-default--inverse {
   background-color: #9b59b6;
@@ -310,11 +306,11 @@ body {
 }
 
 
-/* jumbotron */
-.jumbotron{
-  background-color: #f2e9f5;
-  border: 0.5px solid #9b59b6;
-}
+
+
+
+
+
 
 /*button*/
 /*.btn-default{
@@ -416,6 +412,11 @@ fieldset[disabled] .btn-default.active {
   background-color: #f2e9f5 !important;
 }
 
+/*arrow icon for the table sorting headers*/
+.sort-icon {
+  font-size: 9px;
+  margin-left: 3px;
+}
 
 
 /*pagination*/
@@ -435,8 +436,15 @@ fieldset[disabled] .btn-default.active {
   border-color: #9b59b6;
 }
 
-/*Rounded logo borders*/
-.logo--img{
-  border: 1px solid #9b59b6;
-  border-radius: 50%;
+/*whole comment paragraph*/
+.comment--jsc{
+  padding: 1px 5px;
+  margin:0px;
 }
+
+/*smaller date text*/
+.smaller--jsc{
+  font-size: 70% !important;
+}
+
+
