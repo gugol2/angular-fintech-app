@@ -259,7 +259,7 @@ body {
 .btn-primary.active, 
 .open .dropdown-toggle.btn-primary {
   background-color: #8B46A6 !important;
-  /*border-color: #804996 !important;*/
+  border-color: #290053 !important;
 }
  
 .btn-primary:active, 
@@ -326,4 +326,9 @@ fieldset[disabled] .btn-primary.active {
   color: #2114ec;
   background-color: #f2e9f5;
   border-color: #9b59b6;
+}
+
+.logo--img{
+  border: 1px solid #9b59b6;
+  border-radius: 50%;
 }
