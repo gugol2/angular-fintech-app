@@ -121,8 +121,7 @@ body {
   border-radius: 5px;
 }
 
-/**/
-
+/*navbar*/
 .navbar-default {
   background-color: #290053;
   border-color: #9b59b6;
@@ -143,6 +142,26 @@ body {
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
   color: #2114ec;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu {
+  background-color: #290053;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a {
+  color: #ffffff;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a:hover,
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a:focus {
+  color: #2114ec;
+  background-color: #9b59b6;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu > li > .divider {
+  background-color: #9b59b6;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+  color: #2114ec;
+  background-color: #9b59b6;
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
@@ -197,27 +216,93 @@ body {
   background-color: #f2e9f5;
 }
 
-.btn-primary{
+/*button*/
+/*.btn-primary{
   color: #fff;
-  background-color: #290053;
+  background-color: #9b59b6;
   border-color: #9b59b6;
 }
 
 .btn-primary:hover {
-  color: #2114ec;
-  background-color: #9b59b6;
-  /*background-color: #290053;*/
+  color: #fff;
+  background-color: #9100e3;
+  border-color: #9b59b6;
 }
 
+.btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary{
+  color: #2114ec;
+  background-color: #290053 !important;
+  border-color: #9b59b6;
+}
+
+.btn-primary:focus, .btn-primary.focus {
+  color: #fff;
+  background-color: #290053;
+  border-color: #9b59b6;
+}*/
+
+.btn-primary { 
+  color: #FFFFFF; 
+  background-color: #9B59B6; 
+  border-color: #804996; 
+} 
+ 
+.btn-primary:hover, 
+.btn-primary:focus { 
+  color: #FFFFFF; 
+  background-color: #8B46A6; 
+  border-color: #804996; 
+} 
+
+
+.btn-primary:active, 
+.btn-primary.active, 
+.open .dropdown-toggle.btn-primary {
+  background-color: #8B46A6 !important;
+  /*border-color: #804996 !important;*/
+}
+ 
+.btn-primary:active, 
+.btn-primary.active, 
+.open .dropdown-toggle.btn-primary { 
+  background-image: none; 
+} 
+ 
+.btn-primary.disabled, 
+.btn-primary[disabled], 
+fieldset[disabled] .btn-primary, 
+.btn-primary.disabled:hover, 
+.btn-primary[disabled]:hover, 
+fieldset[disabled] .btn-primary:hover, 
+.btn-primary.disabled:focus, 
+.btn-primary[disabled]:focus, 
+fieldset[disabled] .btn-primary:focus, 
+.btn-primary.disabled:active, 
+.btn-primary[disabled]:active, 
+fieldset[disabled] .btn-primary:active, 
+.btn-primary.disabled.active, 
+.btn-primary[disabled].active, 
+fieldset[disabled] .btn-primary.active { 
+  background-color: #9B59B6; 
+  border-color: #804996; 
+} 
+ 
+.btn-primary .badge { 
+  color: #9B59B6; 
+  background-color: #FFFFFF; 
+}
+
+/*pannel*/
 .panel-default > .panel-heading, .panel-default > .panel-footer {
-    background-color: #f2e9f5;
-    border-color: #9b59b6;
+  background-color: #f2e9f5;
+  border-color: #9b59b6;
 }
 
 .panel-default{
   border-color: #9b59b6;
 }
 
+/*table*/
 .even {
   background-color: #fdf7ff !important;
 }
@@ -230,6 +315,7 @@ body {
   background-color: #f2e9f5 !important;
 }
 
+/*pagination*/
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
   color: #fff;
   background-color: #9b59b6;
