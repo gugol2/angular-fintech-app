@@ -31,7 +31,7 @@
     },
     "jquery-ui": {
       "main": [
-        "themes/base/jquery-ui.css",
+        "themes/eggplant/jquery-ui.css",
         "jquery-ui.js"
       ]
     }
