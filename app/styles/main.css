@@ -84,24 +84,29 @@ body {
 
 
 /*JSC Tweaks*/
+/*whole comment paragraph*/
 .comment--jsc{
   padding: 1px 5px;
   margin:0px;
 }
 
+/*smaller date text*/
 .smaller--jsc{
   font-size: 70% !important;
 }
 
+/*smaller brand for second navbar*/
 .navbar-brand--jsc{
   font-size: 100%;
 }
 
+/*arrow icon for the table sorting headers*/
 .sort-icon {
   font-size: 9px;
   margin-left: 3px;
 }
 
+/*error div in assets*/
 #jsc--error{
   height: 50px;
   padding: 1%;
@@ -121,7 +126,7 @@ body {
   border-radius: 5px;
 }
 
-/*navbar*/
+/*navbar default*/
 .navbar-default {
   background-color: #290053;
   border-color: #9b59b6;
@@ -212,8 +217,104 @@ body {
   }
 }
 
+/* second navbar is default--inverse*/
+.navbar-default--inverse {
+  background-color: #9b59b6;
+  border-color: #290053;
+}
+.navbar-default--inverse .navbar-brand {
+  color: #2114ec;
+}
+.navbar-default--inverse .navbar-brand:hover,
+.navbar-default--inverse .navbar-brand:focus {
+  color: #ffffff;
+}
+.navbar-default--inverse .navbar-text {
+  color: #2114ec;
+}
+.navbar-default--inverse .navbar-nav > li > a {
+  color: #2114ec;
+}
+.navbar-default--inverse .navbar-nav > li > a:hover,
+.navbar-default--inverse .navbar-nav > li > a:focus {
+  color: #ffffff;
+  /*had to add this so that it works smoothly*/
+  background-color: #9b59b6;
+}
+.navbar-default--inverse .navbar-nav > li > .dropdown-menu {
+  background-color: #9b59b6;
+}
+.navbar-default--inverse .navbar-nav > li > .dropdown-menu > li > a {
+  color: #2114ec;
+}
+.navbar-default--inverse .navbar-nav > li > .dropdown-menu > li > a:hover,
+.navbar-default--inverse .navbar-nav > li > .dropdown-menu > li > a:focus {
+  color: #ffffff;
+  background-color: #290053;
+}
+.navbar-default--inverse .navbar-nav > li > .dropdown-menu > li > .divider {
+  background-color: #290053;
+}
+.navbar-default--inverse .navbar-nav .open .dropdown-menu > .active > a,
+.navbar-default--inverse .navbar-nav .open .dropdown-menu > .active > a:hover,
+.navbar-default--inverse .navbar-nav .open .dropdown-menu > .active > a:focus {
+  color: #ffffff;
+  background-color: #290053;
+}
+.navbar-default--inverse .navbar-nav > .active > a,
+.navbar-default--inverse .navbar-nav > .active > a:hover,
+.navbar-default--inverse .navbar-nav > .active > a:focus {
+  color: #ffffff;
+  background-color: #290053;
+}
+.navbar-default--inverse .navbar-nav > .open > a,
+.navbar-default--inverse .navbar-nav > .open > a:hover,
+.navbar-default--inverse .navbar-nav > .open > a:focus {
+  color: #ffffff;
+  background-color: #290053;
+}
+.navbar-default--inverse .navbar-toggle {
+  border-color: #290053;
+}
+.navbar-default--inverse .navbar-toggle:hover,
+.navbar-default--inverse .navbar-toggle:focus {
+  background-color: #290053;
+}
+.navbar-default--inverse .navbar-toggle .icon-bar {
+  background-color: #2114ec;
+}
+.navbar-default--inverse .navbar-collapse,
+.navbar-default--inverse .navbar-form {
+  border-color: #2114ec;
+}
+.navbar-default--inverse .navbar-link {
+  color: #2114ec;
+}
+.navbar-default--inverse .navbar-link:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 767px) {
+  .navbar-default--inverse .navbar-nav .open .dropdown-menu > li > a {
+    color: #2114ec;
+  }
+  .navbar-default--inverse .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-default--inverse .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #ffffff;
+  }
+  .navbar-default--inverse .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-default--inverse .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-default--inverse .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #ffffff;
+    background-color: #290053;
+  }
+}
+
+
+/* jumbotron */
 .jumbotron{
   background-color: #f2e9f5;
+  border: 0.5px solid #9b59b6;
 }
 
 /*button*/
@@ -316,7 +417,13 @@ fieldset[disabled] .btn-default.active {
   background-color: #f2e9f5 !important;
 }
 
+
+
 /*pagination*/
+/*.pagination > li > a, .pagination > li.disabled > a {
+  border-color: 0.5px solid #fdf7ff;
+}*/
+
 .pagination > li > a:hover, .pagination > li > a:focus {
   color: #2114ec;
   background-color: #f2e9f5;
@@ -329,6 +436,7 @@ fieldset[disabled] .btn-default.active {
   border-color: #9b59b6;
 }
 
+/*Rounded logo borders*/
 .logo--img{
   border: 1px solid #9b59b6;
   border-radius: 50%;
