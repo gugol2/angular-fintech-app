@@ -43,7 +43,7 @@ Running `grunt test` will run the unit tests with karma.
 
 ### Live Demo ###
 
-* [http://angular-financial-portal.herokuapp.com/#/](http://angular-financial-portal.herokuapp.com/#/)
+* [http://angular-fintech-app.herokuapp.com](http://angular-fintech-app.herokuapp.com/#/)
 
 
 ### Notes:
